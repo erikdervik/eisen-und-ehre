@@ -60,8 +60,8 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("p1_lunge") and state in CAN_LUNGE and lungeTime < -2:
 			state = "LUNGE"
 			velocity = Vector2.ZERO
-			lungeVelocity = 100
-			lungeTime = 0.5
+			lungeVelocity = 150
+			lungeTime = 0.85
 			$AnimatedSprite2D.play("lunge")
 		if Input.is_action_just_pressed("p1_parry") and state in CAN_PARRY and parryTime < -2:
 			state = "PARRY"

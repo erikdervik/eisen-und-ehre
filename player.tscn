@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://br7lgik01bxy8"]
+[gd_scene load_steps=37 format=3 uid="uid://br7lgik01bxy8"]
 
 [ext_resource type="Script" uid="uid://dh43ii3wk17t7" path="res://fechter.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://ej0glevaplk4" path="res://assets/sprites/player1/fencing_sheet.png" id="2_onrkg"]
@@ -97,10 +97,6 @@ region = Rect2(0, 44, 44, 22)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7lmhl"]
 atlas = ExtResource("2_onrkg")
 region = Rect2(44, 44, 44, 22)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dx0e4"]
-atlas = ExtResource("2_onrkg")
-region = Rect2(0, 66, 44, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jm5j8"]
 atlas = ExtResource("2_onrkg")
@@ -233,9 +229,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dx0e4")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_jm5j8")
 }, {
 "duration": 1.0,
@@ -243,6 +236,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qtqh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtqh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtqh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hik5")
 }],
 "loop": true,
 "name": &"lunge",
@@ -294,5 +296,4 @@ shape = SubResource("RectangleShape2D_onrkg")
 position = Vector2(2, -10)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_q13i1")
-animation = &"backwards"
-frame_progress = 0.46656454
+animation = &"lunge"

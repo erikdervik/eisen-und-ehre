@@ -14,13 +14,19 @@ const CAN_BACK = ["IDLE","FORWARD", "BACK"]
 const CAN_IDLE = ["IDLE","FORWARD", "BACK", "JUMP"]
 const CAN_FOWARD_ATTACK = ["FORWARD"]
 const CAN_BACK_ATTACK = ["BACK"]
+
+var lungeVelocity = 0
 var state = "IDLE"
 var parryTime = 0
 var lungeTime = 0
 var attackTime = 0
 var d = 0
 var groundPoundTime = 0
+
 func _physics_process(delta: float) -> void:
+	velocity.x = lungeVelocity if lungeVelocity > 0 else velocity.x
+	lungeVelocity = max(0,lungeVelocity - (delta * 9))
+
 	parryTime = max(parryTime - delta, -3)
 	lungeTime = max(lungeTime - delta, -3)
 	attackTime = max(attackTime - delta, -3)
@@ -54,8 +60,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("p1_lunge") and state in CAN_LUNGE and lungeTime < -2:
 			state = "LUNGE"
 			velocity = Vector2.ZERO
-			#CHANGE ANIMATION
-			#CATAPULT RIGHT
+			lungeVelocity = 100
 			lungeTime = 0.5
 			$AnimatedSprite2D.play("lunge")
 		if Input.is_action_just_pressed("p1_parry") and state in CAN_PARRY and parryTime < -2:
@@ -77,11 +82,4 @@ func _physics_process(delta: float) -> void:
 	else:
 		groundPoundTime = 1
 		velocity += get_gravity() * delta
-
-
-	
-	
-		
-	
-	
 	move_and_slide()

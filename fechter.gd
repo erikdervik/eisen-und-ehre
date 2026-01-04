@@ -1,5 +1,5 @@
 extends CharacterBody2D
-const SPEED = 3000.0
+const SPEED = 9000.0
 const JUMP_VELOCITY = -400.0
 
 const CAN_PARRY = ["IDLE","FORWARD", "BACK"]
@@ -22,25 +22,31 @@ func _physics_process(delta: float) -> void:
 		state = "ATTACK"
 		#CHANGE ANIMATION
 		#SPAWN HITBOX after N frames
+		$AnimatedSprite2D.play("hit n stand")
 	if Input.is_action_just_pressed("p1_lunge") and is_on_floor() and state in CAN_LUNGE:
 		state = "LUNGE"
 		#CHANGE ANIMATION
 		#CATAPULT RIGHT
 		#SPAWN HITBOX after N frames
+		$AnimatedSprite2D.play("lunge")
 	if Input.is_action_just_pressed("p1_parry") and is_on_floor() and state in CAN_PARRY:
 		state = "PARRY"
 		#change animation
 		parryTime = 3
+		$AnimatedSprite2D.play("idle")
 
 	if Input.is_action_pressed("p1_right") and is_on_floor() and state in CAN_FOWARD:
 		state = "FORWARD"
 		velocity.x = SPEED * delta
+		$AnimatedSprite2D.play("walk")
 	elif Input.is_action_pressed("p1_left") and is_on_floor() and state in CAN_BACK:
 		state = "BACK"
 		velocity.x = -SPEED * delta
+		$AnimatedSprite2D.play("backwards")
 	elif is_on_floor():
 		state = "IDLE"
 		velocity.x = 0
+		$AnimatedSprite2D.play("idle")
 		
 	
 	

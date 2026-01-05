@@ -1,14 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8b3dckx4gc31"]
 
-[ext_resource type="PackedScene" uid="uid://br7lgik01bxy8" path="res://player.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://o3ue1pvjb42b" path="res://game.gd" id="1_e2o6t"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e2o6t"]
 distance = -278.0
 
 [node name="game" type="Node2D"]
-
-[node name="Fechter" parent="." instance=ExtResource("1_80nbo")]
-position = Vector2(-419, -8)
+script = ExtResource("1_e2o6t")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

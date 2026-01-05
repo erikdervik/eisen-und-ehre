@@ -66,8 +66,8 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed(player + "_lunge") and state in CAN_LUNGE and lungeTime < -2:
 			state = "LUNGE"
 			velocity = Vector2.ZERO
-			lungeVelocity = 100
-			lungeTime = 0.5
+			lungeVelocity = 150
+			lungeTime = 0.85
 			$AnimatedSprite2D.play("lunge")
 			emit_signal("action",player,"lunge") # loose priority after lunge is finished
 

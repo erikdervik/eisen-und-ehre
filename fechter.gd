@@ -40,10 +40,9 @@ func _ready() -> void:
 	direction = 1 if player == "p1" else -1
 	scale.x = scale.x if player == "p1" else -scale.x
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float) -> void:		
 	parriesTimer = parriesTimer-delta if parriesTimer > 0.0 else 0.0
 	if parriesTimer > 0 and not self.is_in_group("parries"):
-		print("YÖY")
 		self.get_child(0).add_to_group("parries")
 	else:
 		self.get_child(0).remove_from_group("parries")
@@ -54,7 +53,6 @@ func _physics_process(delta: float) -> void:
 	if hitTime < 0.0:
 		spawn_hitbox(0,1)
 		hitTime = 0.0
-	
 	
 	velocity.x = lungeVelocity if lungeVelocity != 0 else velocity.x
 	lungeVelocity = direction * max(0,lungeVelocity - (delta * 9))
@@ -78,7 +76,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y = JUMP_VELOCITY
 	
 		if Input.is_action_just_pressed(player + "_attack") and state in CAN_ATTACK and attackTime < -2:
-
+			hitTime = 0.5
 			if state in CAN_FOWARD_ATTACK:	
 				$AnimatedSprite2D.play("hit n walk")
 			elif state in CAN_BACK_ATTACK:
@@ -101,7 +99,9 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed(player + "_parry") and state in CAN_PARRY and parryTime < -2:
 			state = "PARRY"
 			parryTime = 0.5
+			parriesTimer = 3.0
 			$AnimatedSprite2D.play("idle")
+			
 			
 		
 		if (player == "p1" and Input.is_action_pressed("p1_right") or player == "p2" and Input.is_action_pressed("p2_left")) and state in CAN_FOWARD:

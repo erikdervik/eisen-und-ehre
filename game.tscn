@@ -19,3 +19,15 @@ shape = SubResource("WorldBoundaryShape2D_e2o6t")
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("2_e2o6t")]
 position = Vector2(0, 233)
 animation = &"Angriffsrecht(links)"
+
+[node name="scoreP1" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "0"
+
+[node name="scoreP2" type="Label" parent="."]
+offset_left = -63.0
+offset_top = 4.0
+offset_right = -23.0
+offset_bottom = 27.0
+text = "0"

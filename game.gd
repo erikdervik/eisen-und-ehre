@@ -9,7 +9,10 @@ var priority = {"p1":1, "p2":1}
 var freeze_priority = false
 var end_timer = 0.0
 var hasHit = {"p1":false,"p2":false}
+var scores = {"p1":0,"p2":0, "simultan" : 0}
 var winner
+var startpos1 = Vector2(-200,300)
+var startpos2 = Vector2(200,300)
 
 func _on_hit(p, parries):
 	if parries == false:
@@ -19,12 +22,15 @@ func _on_hit(p, parries):
 			end_timer = 1.0
 	else:
 		print("PARRIED") #PLAY SOUND
-	print(p,parries)
+	print(p,parries, priority)
 
 func eval_winner():
 	if hasHit["p1"] and not hasHit["p2"]:
+		print("ONLY ONE HIT")
 		return "p1"
 	elif hasHit["p2"] and not hasHit["p1"]:
+		print("ONLY ONE HIT")
+#
 		return "p2"
 	elif priority["p1"] > priority["p2"]:
 		return "p1"
@@ -43,19 +49,29 @@ func _ready() -> void:
 	p2.action.connect(_player_action)
 
 func modifyScoreboard(win):
+	scores[win] += 1
+	$scoreP1.text = str(scores["p1"])
+	$scoreP2.text = str(scores["p2"])
 	pass
 func reset():
-	pass
+	p1.position = startpos1
+	p2.position = startpos2
+	hasHit = {"p1":false,"p2":false}
+	prioTimeLooser  = {"p1":0,"p2":0}
+	priority = {"p1":1, "p2":1}
+	freeze_priority = false
+	end_timer = 0.0
 
 func _process(delta: float) -> void:
+	print(priority, freeze_priority,prioTimeLooser)
 	end_timer -= delta if end_timer > 0.0 else 0.0
-	#CHANGE TIMESCALE WEN END TIMER > 0 ????
 	if end_timer < 0.0:
 		winner = eval_winner()
 		print(winner)
 		reset()
 		modifyScoreboard(winner)
-		end_timer = 0.0
+
+
 		
 	if not freeze_priority:
 		if prioTimeLooser["p1"] < 0:
@@ -85,6 +101,7 @@ func _player_action(p, action):
 	if action == "forward" and priority[other(p)] <= 0:
 		priority[p] = 1
 	if action == "lunge":
-		prioTimeLooser[p] = 0.5 if prioTimeLooser[p] != 0 else prioTimeLooser[p]
+		print("LUNGEON")
+		prioTimeLooser[p] = 0.5 if prioTimeLooser[p] == 0.0 else prioTimeLooser[p]
 	if action == "attack":
-		prioTimeLooser[p] = 0.5 if prioTimeLooser[p] != 0 else prioTimeLooser[p]
+		prioTimeLooser[p] = 0.5 if prioTimeLooser[p] == 0.0 else prioTimeLooser[p]

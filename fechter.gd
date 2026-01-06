@@ -1,4 +1,6 @@
 extends CharacterBody2D
+var hit = load("res://hit.tscn")
+
 const SPEED = 9000.0
 const JUMP_VELOCITY = -300.0
 
@@ -13,7 +15,7 @@ const CAN_FOWARD_ATTACK = ["FORWARD"]
 const CAN_BACK_ATTACK = ["BACK"]
 
 var player = "p1"
-var lungeVelocity = 0
+var lungeVelocity = 0.0
 var state = "IDLE"
 var parryTime = 0
 var lungeTime = 0
@@ -21,18 +23,42 @@ var attackTime = 0
 var d = 0
 var groundPoundTime = 0
 var direction = 0
-func _ready() -> void:
-	direction = 1 if player == "p1" else -1
-	if player == "p2":
-		scale.x = - scale.x
-		
-		
+var hitTime = 0.0
+var parriesTimer = 0.0
 signal action(player, action)
 
+func spawn_hitbox(offset,lifetime):
+	var hitbox = hit.instantiate()
+	add_child(hitbox)
+	hitbox.position.x += offset
+	hitbox.lifetime = lifetime
+	hitbox.player = player
+	hitbox.hit.connect(get_tree().current_scene._on_hit)
+
+func _ready() -> void:
+	self.get_child(0).add_to_group(player)
+	direction = 1 if player == "p1" else -1
+	scale.x = scale.x if player == "p1" else -scale.x
+
 func _physics_process(delta: float) -> void:
+	parriesTimer = parriesTimer-delta if parriesTimer > 0.0 else 0.0
+	if parriesTimer > 0 and not self.is_in_group("parries"):
+		print("YÖY")
+		self.get_child(0).add_to_group("parries")
+	else:
+		self.get_child(0).remove_from_group("parries")
+
+	
+	
+	hitTime = hitTime-delta if hitTime > 0.0 else 0.0
+	if hitTime < 0.0:
+		spawn_hitbox(0,1)
+		hitTime = 0.0
+	
+	
 	velocity.x = lungeVelocity if lungeVelocity != 0 else velocity.x
 	lungeVelocity = direction * max(0,lungeVelocity - (delta * 9))
-
+	
 	parryTime = max(parryTime - delta, -3)
 	lungeTime = max(lungeTime - delta, -3)
 	attackTime = max(attackTime - delta, -3)
@@ -64,6 +90,7 @@ func _physics_process(delta: float) -> void:
 			attackTime = 1
 			emit_signal("action",player,"attack") # Loose Priority if Attack finished
 		if Input.is_action_just_pressed(player + "_lunge") and state in CAN_LUNGE and lungeTime < -2:
+			hitTime = 0.5
 			state = "LUNGE"
 			velocity = Vector2.ZERO
 			lungeVelocity = 150

@@ -54,8 +54,11 @@ func _physics_process(delta: float) -> void:
 		spawn_hitbox(0,1)
 		hitTime = 0.0
 	
-	velocity.x = lungeVelocity if lungeVelocity != 0 else velocity.x
-	lungeVelocity = direction * max(0,lungeVelocity - (delta * 9))
+	lungeVelocity = lungeVelocity - (delta * 600+PI) if lungeVelocity != 0.0 else 0.0
+	lungeVelocity = 0.0 if lungeVelocity < -100 else lungeVelocity
+	print(player," ",lungeVelocity)
+		
+	velocity.x = direction * lungeVelocity if lungeVelocity != 0.0 else velocity.x
 	
 	parryTime = max(parryTime - delta, -3)
 	lungeTime = max(lungeTime - delta, -3)
@@ -77,7 +80,7 @@ func _physics_process(delta: float) -> void:
 	
 		if Input.is_action_just_pressed(player + "_attack") and state in CAN_ATTACK and attackTime < -2:
 			hitTime = 0.5
-			if state in CAN_FOWARD_ATTACK:	
+			if state in CAN_FOWARD_ATTACK:
 				$AnimatedSprite2D.play("hit n walk")
 			elif state in CAN_BACK_ATTACK:
 				$AnimatedSprite2D.play("hit n back")
@@ -91,7 +94,7 @@ func _physics_process(delta: float) -> void:
 			hitTime = 0.5
 			state = "LUNGE"
 			velocity = Vector2.ZERO
-			lungeVelocity = 150
+			lungeVelocity = 300
 			lungeTime = 0.85
 			$AnimatedSprite2D.play("lunge")
 			emit_signal("action",player,"lunge") # loose priority after lunge is finished

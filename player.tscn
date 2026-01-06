@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://br7lgik01bxy8"]
+[gd_scene load_steps=40 format=3 uid="uid://br7lgik01bxy8"]
 
 [ext_resource type="Script" uid="uid://dh43ii3wk17t7" path="res://fechter.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://ej0glevaplk4" path="res://assets/sprites/player1/fencing_sheet.png" id="2_onrkg"]
@@ -109,6 +109,18 @@ region = Rect2(88, 66, 44, 22)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qtqh7"]
 atlas = ExtResource("2_onrkg")
 region = Rect2(132, 66, 44, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx0e4"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(0, 154, 44, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkwlq"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(0, 176, 44, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hl5qd"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(44, 176, 44, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2wuci"]
 atlas = ExtResource("2_onrkg")
@@ -252,6 +264,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_dx0e4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkwlq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hl5qd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hl5qd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hl5qd")
+}],
+"loop": true,
+"name": &"parade",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2wuci")
 }, {
 "duration": 1.0,
@@ -296,6 +328,5 @@ shape = SubResource("RectangleShape2D_onrkg")
 position = Vector2(6, -10)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_q13i1")
-animation = &"lunge"
-frame = 2
-frame_progress = 0.45535037
+animation = &"parade"
+frame_progress = 0.6861384

@@ -65,7 +65,14 @@ func reset():
 func _process(delta: float) -> void:
 	print(priority, freeze_priority,prioTimeLooser)
 	end_timer -= delta if end_timer > 0.0 else 0.0
+	
+#	if end_timer > 0.0:
+#		Engine.time_scale = 0.5
+#	else:
+#		Engine.time_scale = 1.0
+
 	if end_timer < 0.0:
+		
 		winner = eval_winner()
 		print(winner)
 		reset()

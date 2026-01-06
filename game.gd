@@ -1,7 +1,10 @@
 extends Node2D
 
 var player = load("res://player.tscn")
+
 # Called when the node enters the scene tree for the first time.
+var judge_state = ""
+
 var p1
 var p2
 var prioTimeLooser  = {"p1":0,"p2":0}
@@ -21,16 +24,13 @@ func _on_hit(p, parries):
 			freeze_priority = true
 			end_timer = 1.0
 	else:
-		print("PARRIED") #PLAY SOUND
-	print(p,parries, priority)
+		pass
+
 
 func eval_winner():
 	if hasHit["p1"] and not hasHit["p2"]:
-		print("ONLY ONE HIT")
 		return "p1"
-	elif hasHit["p2"] and not hasHit["p1"]:
-		print("ONLY ONE HIT")
-#
+	elif hasHit["p2"] and not hasHit["p1"]:#
 		return "p2"
 	elif priority["p1"] > priority["p2"]:
 		return "p1"
@@ -62,34 +62,43 @@ func reset():
 	freeze_priority = false
 	end_timer = 0.0
 
+
+func process_judge():
+	pass
+	# Set label
+	# change Animations
+
+func start():
+	get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): pass)
+	get_tree().create_timer(2.0,true,false,true).timeout.connect(func(): pass)
+	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): pass)
+	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): Engine.time_scale = 1)
+
 func _process(delta: float) -> void:
-	print(priority, freeze_priority,prioTimeLooser)
+	print(judge_state)
 	end_timer -= delta if end_timer > 0.0 else 0.0
-	
-#	if end_timer > 0.0:
-#		Engine.time_scale = 0.5
-#	else:
-#		Engine.time_scale = 1.0
-
 	if end_timer < 0.0:
-		
+		judge_state = "STOP"
 		winner = eval_winner()
-		print(winner)
-		reset()
-		modifyScoreboard(winner)
-
-
+		Engine.time_scale = 0
+		get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): judge_state = winner)
+		get_tree().create_timer(4.0,true,false,true).timeout.connect(func(): modifyScoreboard(winner))
+		get_tree().create_timer(5.0,true,false,true).timeout.connect(reset)
+		get_tree().create_timer(7.0,true,false,true).timeout.connect(start)
+	
+		end_timer = 0.0
 		
+
 	if not freeze_priority:
 		if prioTimeLooser["p1"] < 0:
 			priority["p1"] = -1
-			priority["p2"] = 0
+			priority["p2"] = 0 if priority["p2"] == -1 else priority["p2"]
 			prioTimeLooser["p1"] = 0
 		elif prioTimeLooser["p1"] > 0:
 			prioTimeLooser["p1"] -= delta
 		if prioTimeLooser["p2"] < 0:
 			priority["p2"] = -1
-			priority["p1"] = 0
+			priority["p1"] = 0 if priority["p1"] == -1 else priority["p1"]
 			prioTimeLooser["p2"] = 0
 		elif prioTimeLooser["p2"] > 0:
 			prioTimeLooser["p2"] -= delta
@@ -108,7 +117,6 @@ func _player_action(p, action):
 	if action == "forward" and priority[other(p)] <= 0:
 		priority[p] = 1
 	if action == "lunge":
-		print("LUNGEON")
 		prioTimeLooser[p] = 0.5 if prioTimeLooser[p] == 0.0 else prioTimeLooser[p]
 	if action == "attack":
 		prioTimeLooser[p] = 0.5 if prioTimeLooser[p] == 0.0 else prioTimeLooser[p]

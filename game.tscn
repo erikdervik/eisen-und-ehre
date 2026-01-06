@@ -1,12 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8b3dckx4gc31"]
+[gd_scene load_steps=3 format=3 uid="uid://c8b3dckx4gc31"]
 
 [ext_resource type="Script" uid="uid://o3ue1pvjb42b" path="res://game.gd" id="1_e2o6t"]
-[ext_resource type="PackedScene" uid="uid://dg0o8earh6br4" path="res://kampfrichter.tscn" id="2_e2o6t"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e2o6t"]
 distance = -278.0
 
 [node name="game" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_e2o6t")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -15,10 +15,6 @@ script = ExtResource("1_e2o6t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_e2o6t")
-
-[node name="AnimatedSprite2D" parent="." instance=ExtResource("2_e2o6t")]
-position = Vector2(0, 233)
-animation = &"Angriffsrecht(links)"
 
 [node name="scoreP1" type="Label" parent="."]
 offset_right = 40.0
@@ -31,3 +27,14 @@ offset_top = 4.0
 offset_right = -23.0
 offset_bottom = 27.0
 text = "0"
+
+[node name="judge" type="AnimatedSprite2D" parent="."]
+
+[node name="judge_speak" type="RichTextLabel" parent="."]
+offset_left = -21.0
+offset_top = -135.0
+offset_right = 130.0
+offset_bottom = -64.0
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1

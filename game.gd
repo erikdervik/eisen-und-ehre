@@ -1,7 +1,10 @@
 extends Node2D
 
 var player = load("res://player.tscn")
+
 # Called when the node enters the scene tree for the first time.
+var judge_state = ""
+
 var p1
 var p2
 var prioTimeLooser  = {"p1":0,"p2":0}
@@ -23,8 +26,8 @@ func _on_hit(p, parries):
 	else:
 		pass
 
+
 func eval_winner():
-	print(priority)
 	if hasHit["p1"] and not hasHit["p2"]:
 		return "p1"
 	elif hasHit["p2"] and not hasHit["p1"]:#
@@ -59,11 +62,32 @@ func reset():
 	freeze_priority = false
 	end_timer = 0.0
 
+
+func process_judge():
+	pass
+	# Set label
+	# change Animations
+
+func start():
+	get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): pass)
+	get_tree().create_timer(2.0,true,false,true).timeout.connect(func(): pass)
+	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): pass)
+	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): Engine.time_scale = 1)
+
 func _process(delta: float) -> void:
+	print(judge_state)
 	end_timer -= delta if end_timer > 0.0 else 0.0
 	if end_timer < 0.0:
-		reset()
-		modifyScoreboard(eval_winner())
+		judge_state = "STOP"
+		winner = eval_winner()
+		Engine.time_scale = 0
+		get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): judge_state = winner)
+		get_tree().create_timer(4.0,true,false,true).timeout.connect(func(): modifyScoreboard(winner))
+		get_tree().create_timer(5.0,true,false,true).timeout.connect(reset)
+		get_tree().create_timer(7.0,true,false,true).timeout.connect(start)
+	
+		end_timer = 0.0
+		
 
 	if not freeze_priority:
 		if prioTimeLooser["p1"] < 0:

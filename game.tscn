@@ -6,6 +6,7 @@
 distance = -278.0
 
 [node name="game" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_e2o6t")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -27,4 +28,13 @@ offset_right = -23.0
 offset_bottom = 27.0
 text = "0"
 
-[node name="kampfrichter" type="AnimatedSprite2D" parent="."]
+[node name="judge" type="AnimatedSprite2D" parent="."]
+
+[node name="judge_speak" type="RichTextLabel" parent="."]
+offset_left = -21.0
+offset_top = -135.0
+offset_right = 130.0
+offset_bottom = -64.0
+bbcode_enabled = true
+horizontal_alignment = 1
+vertical_alignment = 1

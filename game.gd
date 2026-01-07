@@ -26,7 +26,6 @@ func _on_hit(p, parries):
 	else:
 		pass
 
-
 func eval_winner():
 	if hasHit["p1"] and not hasHit["p2"]:
 		return "p1"
@@ -38,6 +37,14 @@ func eval_winner():
 		return "p2"
 	else:
 		return "simultan"
+
+func eval_priority():
+	if priority["p1"] > priority["p2"]:
+		return "p1"
+	elif priority["p2"] > priority["p1"]:
+		return "p2"
+	else:
+		return "eq"
 
 func _ready() -> void:
 	p1 = player.instantiate()
@@ -52,7 +59,7 @@ func modifyScoreboard(win):
 	scores[win] += 1
 	$scoreP1.text = str(scores["p1"])
 	$scoreP2.text = str(scores["p2"])
-	pass
+
 func reset():
 	p1.position = startpos1
 	p2.position = startpos2
@@ -62,26 +69,58 @@ func reset():
 	freeze_priority = false
 	end_timer = 0.0
 
-
 func process_judge():
-	pass
+	if judge_state in ["p1", "", "p2", "eq"]:
+		judge_state = eval_priority()
+	if judge_state == "STOP":
+		$judge_speak.text = "STOP"
+	elif judge_state =="p1point":
+		$judge_speak.text = "p1point"
+	elif judge_state =="p2point":
+		$judge_speak.text = "p2point"
+	elif $judge_speak.text in ["STOP","p1point","p2point"]:
+		$judge_speak.text = ""
+
+	match judge_state:
+		"start":
+			print("yay")
+			$judge.play("StellungFertigLos")
+		"p1":
+			$judge.play("Angriffsrecht(links)")
+		"p2":
+			$judge.play("Angriffsrecht(rechts)")
+		"STOP":
+			$judge.play("halt")
+		"p1point":
+			$judge.play("Treffer(rechts)")
+		"p2point":
+			$judge.play("Treffer(links)")
+		"simultanpoint":
+			$judge.play("Simultanees")
+		"eq":
+			$judge.play("Idle")
 	# Set label
 	# change Animations
 
 func start():
-	get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): pass)
-	get_tree().create_timer(2.0,true,false,true).timeout.connect(func(): pass)
-	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): pass)
+	get_tree().create_timer(2.0,true,false,true).timeout.connect(func(): $judge_speak.text = "en Garde")
+	get_tree().create_timer(2.5,true,false,true).timeout.connect(func(): $judge_speak.text = "pret")
+	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): $judge_speak.text = "allez!")
+	get_tree().create_timer(4.0,true,false,true).timeout.connect(func(): $judge_speak.text = "")
+	get_tree().create_timer(2.0,true,false,true).timeout.connect(func(): judge_state="start")
 	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): Engine.time_scale = 1)
+	get_tree().create_timer(6.0,true,false,true).timeout.connect(func(): judge_state = "eq")
+
 
 func _process(delta: float) -> void:
+	process_judge()
 	print(judge_state)
 	end_timer -= delta if end_timer > 0.0 else 0.0
 	if end_timer < 0.0:
 		judge_state = "STOP"
 		winner = eval_winner()
 		Engine.time_scale = 0
-		get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): judge_state = winner)
+		get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): judge_state = winner+"point")
 		get_tree().create_timer(4.0,true,false,true).timeout.connect(func(): modifyScoreboard(winner))
 		get_tree().create_timer(5.0,true,false,true).timeout.connect(reset)
 		get_tree().create_timer(7.0,true,false,true).timeout.connect(start)

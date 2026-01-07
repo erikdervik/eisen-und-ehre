@@ -160,7 +160,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_feb5d")
 }],
-"loop": true,
+"loop": false,
 "name": &"Angriffsrecht(links)",
 "speed": 5.0
 }, {
@@ -168,7 +168,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fc0e3")
 }],
-"loop": true,
+"loop": false,
 "name": &"Angriffsrecht(rechts)",
 "speed": 5.0
 }, {
@@ -176,7 +176,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7jktm")
 }],
-"loop": true,
+"loop": false,
 "name": &"Idle",
 "speed": 5.0
 }, {
@@ -184,7 +184,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ryrav")
 }],
-"loop": true,
+"loop": false,
 "name": &"Parade(links)",
 "speed": 5.0
 }, {
@@ -192,7 +192,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_eow3j")
 }],
-"loop": true,
+"loop": false,
 "name": &"Parade(rechts)",
 "speed": 5.0
 }, {
@@ -283,7 +283,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_082n1")
 }],
-"loop": true,
+"loop": false,
 "name": &"StellungFertigLos",
 "speed": 10.0
 }, {
@@ -291,7 +291,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xex6t")
 }],
-"loop": true,
+"loop": false,
 "name": &"Treffer(links)",
 "speed": 5.0
 }, {
@@ -299,7 +299,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_aa0lp")
 }],
-"loop": true,
+"loop": false,
 "name": &"Treffer(rechts)",
 "speed": 5.0
 }, {

@@ -1,8 +1,41 @@
-[gd_scene load_steps=43 format=3 uid="uid://c8b3dckx4gc31"]
+[gd_scene load_steps=76 format=3 uid="uid://c8b3dckx4gc31"]
 
 [ext_resource type="Script" uid="uid://o3ue1pvjb42b" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://bkiqi8755qk7u" path="res://assets/sprites/kampfrichter/sheet.png" id="2_e2o6t"]
-[ext_resource type="Texture2D" uid="uid://dair51oc7hgui" path="res://assets/sprites/background/background.png" id="3_feb5d"]
+[ext_resource type="AudioStream" uid="uid://c2nj1mrxwey4p" path="res://assets/sounds/hit/hit-01.mp3" id="2_xex6t"]
+[ext_resource type="AudioStream" uid="uid://e8rlhsvanwvi" path="res://assets/sounds/hit/hit-02.mp3" id="3_aa0lp"]
+[ext_resource type="AudioStream" uid="uid://ctrpqufbxy1" path="res://assets/sounds/hit/hit-03.mp3" id="4_iu0sx"]
+[ext_resource type="AudioStream" uid="uid://cra6n5lgd4mdr" path="res://assets/sounds/hit/hit-04.mp3" id="5_4v2jo"]
+[ext_resource type="AudioStream" uid="uid://r3mp8none77f" path="res://assets/sounds/hit/hit-05.mp3" id="6_l1i01"]
+[ext_resource type="AudioStream" uid="uid://ba4w88hpf236f" path="res://assets/sounds/hit/hit-06.mp3" id="7_r62pu"]
+[ext_resource type="AudioStream" uid="uid://b47ni3axw63fu" path="res://assets/sounds/hit/hit-07.mp3" id="8_klri6"]
+[ext_resource type="AudioStream" uid="uid://cu8uuv2agh871" path="res://assets/sounds/hit/hit-08.mp3" id="9_eu6ph"]
+[ext_resource type="AudioStream" uid="uid://bwl0kal6qbt4y" path="res://assets/sounds/hit/hit-09.mp3" id="10_edr7y"]
+[ext_resource type="AudioStream" uid="uid://b4pyc6i0m1tsa" path="res://assets/sounds/hit/hit-10.mp3" id="11_kq12w"]
+[ext_resource type="AudioStream" uid="uid://b83pkdjbdbck7" path="res://assets/sounds/hit/hit-11.mp3" id="12_t46w6"]
+[ext_resource type="AudioStream" uid="uid://mwyihvppm2ba" path="res://assets/sounds/hit/hit-12.mp3" id="13_m28ev"]
+[ext_resource type="AudioStream" uid="uid://dq1gjoaxtpheb" path="res://assets/sounds/hit/hit-13.mp3" id="14_lwlx3"]
+[ext_resource type="AudioStream" uid="uid://ccjl7cpfihci8" path="res://assets/sounds/hit/hit-14.mp3" id="15_0de7l"]
+[ext_resource type="AudioStream" uid="uid://b7dpnrtkakdyx" path="res://assets/sounds/hit/hit-15.mp3" id="16_87ddb"]
+[ext_resource type="AudioStream" uid="uid://b81s685h5deyq" path="res://assets/sounds/hit/hit-16.mp3" id="17_mljfx"]
+[ext_resource type="AudioStream" uid="uid://bx5yaojaheq31" path="res://assets/sounds/hit/hit-17.mp3" id="18_qpefm"]
+[ext_resource type="AudioStream" uid="uid://bensd8k8prgav" path="res://assets/sounds/hit/hit-18.mp3" id="19_tb2lt"]
+[ext_resource type="AudioStream" uid="uid://cb2xlkb1b461u" path="res://assets/sounds/parry/parry-01.mp3" id="20_cfc7e"]
+[ext_resource type="AudioStream" uid="uid://duolnopouqi3f" path="res://assets/sounds/parry/parry-02.mp3" id="21_gh0px"]
+[ext_resource type="AudioStream" uid="uid://cbu1l7adm8h6r" path="res://assets/sounds/parry/parry-03.mp3" id="22_v33yl"]
+[ext_resource type="AudioStream" uid="uid://b8soq5inqm5fb" path="res://assets/sounds/parry/parry-04.mp3" id="23_2tki7"]
+[ext_resource type="AudioStream" uid="uid://ci7gqghfk7mbd" path="res://assets/sounds/parry/parry-05.mp3" id="24_ib7ph"]
+[ext_resource type="AudioStream" uid="uid://dqkxc5cibp2gd" path="res://assets/sounds/parry/parry-06.mp3" id="25_vuohh"]
+[ext_resource type="AudioStream" uid="uid://bue7tiuqc2co3" path="res://assets/sounds/parry/parry-07.mp3" id="26_3gvs5"]
+[ext_resource type="AudioStream" uid="uid://c2by11ln11s78" path="res://assets/sounds/parry/parry-08.mp3" id="27_mc3al"]
+[ext_resource type="AudioStream" uid="uid://tt01y0hvnm5w" path="res://assets/sounds/parry/parry-09.mp3" id="28_bqa6y"]
+[ext_resource type="AudioStream" uid="uid://guemko3sd4ko" path="res://assets/sounds/parry/parry-10.mp3" id="29_du4n2"]
+[ext_resource type="AudioStream" uid="uid://br41hqechsy2f" path="res://assets/sounds/parry/parry-11.mp3" id="30_ra4rb"]
+[ext_resource type="AudioStream" uid="uid://bh30e5vnsnh2k" path="res://assets/sounds/parry/parry-12.mp3" id="31_ple6s"]
+[ext_resource type="AudioStream" uid="uid://cmgpljhsddnv0" path="res://assets/sounds/parry/parry-13.mp3" id="32_jo4nb"]
+[ext_resource type="AudioStream" uid="uid://gocsqvuuw7tm" path="res://assets/sounds/parry/parry-14.mp3" id="33_56gn1"]
+[ext_resource type="AudioStream" uid="uid://bfktnrya5aagh" path="res://assets/sounds/parry/parry-15.mp3" id="34_avmo2"]
+[ext_resource type="PackedScene" uid="uid://uhkw8ibv7ur7" path="res://main_ui.tscn" id="36_aa0lp"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e2o6t"]
 distance = -278.0
@@ -373,8 +406,7 @@ bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(1, 114)
-scale = Vector2(2, 2)
-texture = ExtResource("3_feb5d")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = 24.0
+
+[node name="MainUI" parent="." instance=ExtResource("36_aa0lp")]

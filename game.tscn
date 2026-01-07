@@ -369,6 +369,7 @@ hit_sounds = Array[AudioStream]([ExtResource("2_xex6t"), ExtResource("3_aa0lp"),
 parry_sounds = Array[AudioStream]([ExtResource("20_cfc7e"), ExtResource("21_gh0px"), ExtResource("22_v33yl"), ExtResource("23_2tki7"), ExtResource("24_ib7ph"), ExtResource("25_vuohh"), ExtResource("26_3gvs5"), ExtResource("27_mc3al"), ExtResource("28_bqa6y"), ExtResource("29_du4n2"), ExtResource("30_ra4rb"), ExtResource("31_ple6s"), ExtResource("32_jo4nb"), ExtResource("33_56gn1"), ExtResource("34_avmo2")])
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 130)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -376,22 +377,22 @@ parry_sounds = Array[AudioStream]([ExtResource("20_cfc7e"), ExtResource("21_gh0p
 shape = SubResource("WorldBoundaryShape2D_e2o6t")
 
 [node name="scoreP1" type="Label" parent="."]
-offset_right = 40.0
+offset_left = 24.0
+offset_right = 64.0
 offset_bottom = 23.0
 text = "0"
 
 [node name="scoreP2" type="Label" parent="."]
-offset_left = -63.0
-offset_top = 4.0
-offset_right = -23.0
-offset_bottom = 27.0
+offset_left = -38.0
+offset_right = 2.0
+offset_bottom = 23.0
 text = "0"
 
 [node name="judge" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, 237)
-scale = Vector2(3, 3)
+position = Vector2(0, 10)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_r62pu")
-animation = &"Simultanees"
+animation = &"konterattacke(links)"
 
 [node name="judge_speak" type="RichTextLabel" parent="."]
 offset_left = -21.0

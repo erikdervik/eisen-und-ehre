@@ -29,8 +29,8 @@ var end_timer = 0.0
 var hasHit = {"p1":false,"p2":false}
 var scores = {"p1":0,"p2":0, "simultan" : 0}
 var winner
-var startpos1 = Vector2(-200,300)
-var startpos2 = Vector2(200,300)
+var startpos1 = Vector2(-72,300)
+var startpos2 = Vector2(72,300)
 
 func _on_hit(p, parries):
 	if parries == false:
@@ -71,6 +71,8 @@ func _ready() -> void:
 	p2.player = "p2"
 	add_child(p2)
 	p2.action.connect(_player_action)
+	p1.position = startpos1
+	p2.position = startpos2
 
 func modifyScoreboard(win):
 	scores[win] += 1

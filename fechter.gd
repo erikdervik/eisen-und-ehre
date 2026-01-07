@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 		hitTime = 0.0
 	
 	lungeVelocity = lungeVelocity - (delta * 600+PI) if lungeVelocity != 0.0 else 0.0
-	lungeVelocity = 0.0 if lungeVelocity < -100 else lungeVelocity
+	lungeVelocity = 0.0 if lungeVelocity < -20 else lungeVelocity
 		
 	velocity.x = direction * lungeVelocity if lungeVelocity != 0.0 else velocity.x
 	
@@ -93,16 +93,16 @@ func _physics_process(delta: float) -> void:
 			hitTime = 0.3
 			state = "LUNGE"
 			velocity = Vector2.ZERO
-			lungeVelocity = 300 + 1000 * groundPoundTime
+			lungeVelocity = 300 + 50 * groundPoundTime
 			lungeTime = 0.85
 			$AnimatedSprite2D.play("lunge")
 			emit_signal("action",player,"lunge") # loose priority after lunge is finished
 
 		if Input.is_action_just_pressed(player + "_parry") and state in CAN_PARRY and parryTime < -2:
 			state = "PARRY"
-			parryTime = 0.5
-			parriesTimer = 2.0
-			$AnimatedSprite2D.play("idle")
+			parryTime = 1
+			parriesTimer = 1.5
+			$AnimatedSprite2D.play("parade")
 			
 			
 		

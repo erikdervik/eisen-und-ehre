@@ -333,6 +333,18 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_efrwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efrwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efrwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efrwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efrwb")
 }],
 "loop": true,
 "name": &"parade",
@@ -384,5 +396,4 @@ shape = SubResource("RectangleShape2D_onrkg")
 position = Vector2(10, -32)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_q13i1")
-animation = &"hit n stand"
-frame_progress = 0.066896185
+animation = &"parade"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://c8b3dckx4gc31"]
+[gd_scene load_steps=77 format=3 uid="uid://c8b3dckx4gc31"]
 
 [ext_resource type="Script" uid="uid://o3ue1pvjb42b" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://bkiqi8755qk7u" path="res://assets/sprites/kampfrichter/sheet.png" id="2_e2o6t"]
@@ -36,6 +36,7 @@
 [ext_resource type="AudioStream" uid="uid://gocsqvuuw7tm" path="res://assets/sounds/parry/parry-14.mp3" id="33_56gn1"]
 [ext_resource type="AudioStream" uid="uid://bfktnrya5aagh" path="res://assets/sounds/parry/parry-15.mp3" id="34_avmo2"]
 [ext_resource type="PackedScene" uid="uid://uhkw8ibv7ur7" path="res://main_ui.tscn" id="36_aa0lp"]
+[ext_resource type="Texture2D" uid="uid://dair51oc7hgui" path="res://assets/sprites/background/background.png" id="37_iu0sx"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e2o6t"]
 distance = -278.0
@@ -378,16 +379,16 @@ zoom = Vector2(0.8, 0.8)
 shape = SubResource("WorldBoundaryShape2D_e2o6t")
 
 [node name="scoreP1" type="Label" parent="."]
-offset_left = 42.0
+offset_left = 50.0
 offset_top = 92.0
-offset_right = 82.0
+offset_right = 90.0
 offset_bottom = 115.0
 text = "0"
 
 [node name="scoreP2" type="Label" parent="."]
-offset_left = -63.0
+offset_left = -52.0
 offset_top = 92.0
-offset_right = -23.0
+offset_right = -12.0
 offset_bottom = 115.0
 text = "0"
 
@@ -410,3 +411,9 @@ vertical_alignment = 1
 volume_db = 24.0
 
 [node name="MainUI" parent="." instance=ExtResource("36_aa0lp")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 114)
+scale = Vector2(2, 2)
+texture = ExtResource("37_iu0sx")

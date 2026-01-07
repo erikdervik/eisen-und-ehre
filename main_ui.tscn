@@ -1,0 +1,72 @@
+[gd_scene load_steps=2 format=3 uid="uid://uhkw8ibv7ur7"]
+
+[ext_resource type="Script" uid="uid://c5320oeusqo1d" path="res://main_ui.gd" id="1_2ppmm"]
+
+[node name="MainUI" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ppmm")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 34.0
+offset_right = 184.0
+offset_bottom = 61.0
+text = "Eisen und ehre"
+
+[node name="play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 467.0
+offset_top = 280.0
+offset_right = 538.0
+offset_bottom = 311.0
+text = "Play"
+
+[node name="credits" type="Button" parent="."]
+layout_mode = 0
+offset_left = 468.0
+offset_top = 354.0
+offset_right = 539.0
+offset_bottom = 385.0
+text = "credits
+"
+
+[node name="settings" type="Button" parent="."]
+layout_mode = 0
+offset_left = 470.0
+offset_top = 317.0
+offset_right = 539.0
+offset_bottom = 348.0
+text = "settings
+"
+
+[node name="LinkButton" type="LinkButton" parent="."]
+layout_mode = 0
+offset_left = 890.0
+offset_top = 623.0
+offset_right = 995.0
+offset_bottom = 647.0
+text = "https://itch.io"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.246
+anchor_bottom = 0.71500003
+offset_left = 339.0
+offset_top = 622.0
+offset_right = 474.608
+offset_bottom = 183.68
+text = "A game by Erik Gubo and Mirko Bodenmüller"
+
+[connection signal="button_down" from="play" to="." method="_on_play_button_down"]

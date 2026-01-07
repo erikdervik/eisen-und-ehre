@@ -3,8 +3,23 @@ extends Node2D
 var player = load("res://player.tscn")
 
 # Called when the node enters the scene tree for the first time.
-var judge_state = ""
 
+
+@onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
+@export var hit_sounds: Array[AudioStream] = []
+@export var parry_sounds: Array[AudioStream] = []
+
+func play_sound(sound):
+	if hit_sounds.is_empty():
+		return
+	if typeof(sound) == TYPE_ARRAY:
+		audio_player.stream = sound.pick_random()
+	else:
+		audio_player.stream = sound
+	
+	audio_player.play()
+
+var judge_state = ""
 var p1
 var p2
 var prioTimeLooser  = {"p1":0,"p2":0}
@@ -19,12 +34,14 @@ var startpos2 = Vector2(200,300)
 
 func _on_hit(p, parries):
 	if parries == false:
+		play_sound(hit_sounds)
+
 		hasHit[p] = true
 		if end_timer == 0.0:
 			freeze_priority = true
 			end_timer = 1.0
 	else:
-		pass
+		play_sound(parry_sounds)
 
 func eval_winner():
 	if hasHit["p1"] and not hasHit["p2"]:
@@ -83,7 +100,6 @@ func process_judge():
 
 	match judge_state:
 		"start":
-			print("yay")
 			$judge.play("StellungFertigLos")
 		"p1":
 			$judge.play("Angriffsrecht(links)")
@@ -101,7 +117,6 @@ func process_judge():
 			$judge.play("Idle")
 	# Set label
 	# change Animations
-
 func start():
 	get_tree().create_timer(2.0,true,false,true).timeout.connect(func(): $judge_speak.text = "en Garde")
 	get_tree().create_timer(2.5,true,false,true).timeout.connect(func(): $judge_speak.text = "pret")
@@ -111,10 +126,8 @@ func start():
 	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): Engine.time_scale = 1)
 	get_tree().create_timer(6.0,true,false,true).timeout.connect(func(): judge_state = "eq")
 
-
-func _process(delta: float) -> void:
+func _process(delta: float) -> void:	
 	process_judge()
-	print(judge_state)
 	end_timer -= delta if end_timer > 0.0 else 0.0
 	if end_timer < 0.0:
 		judge_state = "STOP"

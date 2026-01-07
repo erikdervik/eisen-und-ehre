@@ -1,7 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://c8b3dckx4gc31"]
+[gd_scene load_steps=43 format=3 uid="uid://c8b3dckx4gc31"]
 
 [ext_resource type="Script" uid="uid://o3ue1pvjb42b" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://bkiqi8755qk7u" path="res://assets/sprites/kampfrichter/sheet.png" id="2_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://dair51oc7hgui" path="res://assets/sprites/background/background.png" id="3_feb5d"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e2o6t"]
 distance = -278.0
@@ -334,6 +335,7 @@ script = ExtResource("1_e2o6t")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 130)
+zoom = Vector2(0.8, 0.8)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -341,19 +343,21 @@ position = Vector2(0, 130)
 shape = SubResource("WorldBoundaryShape2D_e2o6t")
 
 [node name="scoreP1" type="Label" parent="."]
-offset_left = 24.0
-offset_right = 64.0
-offset_bottom = 23.0
+offset_left = 42.0
+offset_top = 92.0
+offset_right = 82.0
+offset_bottom = 115.0
 text = "0"
 
 [node name="scoreP2" type="Label" parent="."]
-offset_left = -38.0
-offset_right = 2.0
-offset_bottom = 23.0
+offset_left = -63.0
+offset_top = 92.0
+offset_right = -23.0
+offset_bottom = 115.0
 text = "0"
 
 [node name="judge" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 10)
+position = Vector2(-1, 204)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_r62pu")
 animation = &"konterattacke(links)"
@@ -366,3 +370,9 @@ offset_bottom = -64.0
 bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1, 114)
+scale = Vector2(2, 2)
+texture = ExtResource("3_feb5d")

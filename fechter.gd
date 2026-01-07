@@ -62,7 +62,7 @@ func _physics_process(delta: float) -> void:
 	parryTime = max(parryTime - delta, -3)
 	lungeTime = max(lungeTime - delta, -3)
 	attackTime = max(attackTime - delta, -3)
-	groundPoundTime = max(groundPoundTime - delta, -3)
+	groundPoundTime = max(groundPoundTime - delta, 0)
 	
 	if state == "LUNGE" and lungeTime < 0 or state == "PARRY" and parryTime < 0 or state == "ATTACK" and attackTime < 0:
 		state = "IDLE"
@@ -93,7 +93,7 @@ func _physics_process(delta: float) -> void:
 			hitTime = 0.3
 			state = "LUNGE"
 			velocity = Vector2.ZERO
-			lungeVelocity = 300
+			lungeVelocity = 300 + 1000 * groundPoundTime
 			lungeTime = 0.85
 			$AnimatedSprite2D.play("lunge")
 			emit_signal("action",player,"lunge") # loose priority after lunge is finished

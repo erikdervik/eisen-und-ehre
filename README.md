@@ -1,14 +1,16 @@
 # eisen und ehre
 
 ## TODO
-
-- [ ] sound effekte (Aufgenommen?)
+- [ ] MAIN UI: startfunktion statt Engine.timescale = 0
+- [ ] Endlinie (HITBOX)
+- [x] sound effekte (Aufgenommen?)
+- [ ] silas Sounds
 - [ ] Musik (aufgenommen????? Gitarre + Bass + Ukulele?)
 - [x] Kampfrichter
 - [ ] Starmenü
 - [ ] Ende
 - [x] Text mit En garde prêt allez!
-- [ ] Grafilken für Alles
+- [ ] Grafiken für Alles
 - [ ] Credits
 - [ ] Secrets
 - [ ] Settings

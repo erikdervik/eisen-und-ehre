@@ -380,6 +380,7 @@ animations = [{
 }]
 
 [node name="Fechter" type="CharacterBody2D"]
+process_mode = 1
 script = ExtResource("1_onrkg")
 
 [node name="Area2D" type="Area2D" parent="."]

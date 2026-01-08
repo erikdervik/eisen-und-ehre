@@ -1,13 +1,21 @@
 extends Node2D
 
 var player = load("res://player.tscn")
-
-# Called when the node enters the scene tree for the first time.
-
-
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 @export var hit_sounds: Array[AudioStream] = []
 @export var parry_sounds: Array[AudioStream] = []
+var judge_state = ""
+var p1
+var p2
+var prioTimeLooser  = {"p1":0,"p2":0}
+var priority = {"p1":1, "p2":1}
+var freeze_priority = false
+var end_timer = 0.0
+var hasHit = {"p1":false,"p2":false}
+var scores = {"p1":0,"p2":0, "simultan" : 0}
+var winner
+var startpos1 = Vector2(-72,265)
+var startpos2 = Vector2(72,265)
 
 func play_sound(sound):
 	if hit_sounds.is_empty():
@@ -19,29 +27,18 @@ func play_sound(sound):
 	
 	audio_player.play()
 
-var judge_state = ""
-var p1
-var p2
-var prioTimeLooser  = {"p1":0,"p2":0}
-var priority = {"p1":1, "p2":1}
-var freeze_priority = false
-var end_timer = 0.0
-var hasHit = {"p1":false,"p2":false}
-var scores = {"p1":0,"p2":0, "simultan" : 0}
-var winner
-var startpos1 = Vector2(-72,300)
-var startpos2 = Vector2(72,300)
-
-func _on_hit(p, parries):
+func _on_hit(p, parries, sound):
 	if parries == false:
-		play_sound(hit_sounds)
+		if sound:
+			play_sound(hit_sounds)
 
 		hasHit[p] = true
 		if end_timer == 0.0:
 			freeze_priority = true
 			end_timer = 1.0
 	else:
-		play_sound(parry_sounds)
+		if sound:
+			play_sound(parry_sounds)
 
 func eval_winner():
 	if hasHit["p1"] and not hasHit["p2"]:
@@ -102,7 +99,7 @@ func process_judge():
 
 	match judge_state:
 		"start":
-			$judge.play("StellungFertigLos")
+			pass
 		"p1":
 			$judge.play("Angriffsrecht(links)")
 		"p2":
@@ -119,22 +116,27 @@ func process_judge():
 			$judge.play("Idle")
 	# Set label
 	# change Animations
+
 func start():
-	get_tree().create_timer(2.0,true,false,true).timeout.connect(func(): $judge_speak.text = "en Garde")
-	get_tree().create_timer(2.5,true,false,true).timeout.connect(func(): $judge_speak.text = "pret")
+	judge_state="start"
+	$judge.play("StellungFertigLos")
+	#Engine.time_scale = 1
+	#get_tree().paused = false
+	get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): $judge_speak.text =  "en Garde")
+	get_tree().create_timer(2.0,true,false,true).timeout.connect(func(): $judge_speak.text = "pret")
 	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): $judge_speak.text = "allez!")
-	get_tree().create_timer(4.0,true,false,true).timeout.connect(func(): $judge_speak.text = "")
-	get_tree().create_timer(2.0,true,false,true).timeout.connect(func(): judge_state="start")
-	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): Engine.time_scale = 1)
+	get_tree().create_timer(4.0,true,false,true).timeout.connect(func(): get_tree().paused = false)
+	get_tree().create_timer(6.0,true,false,true).timeout.connect(func(): $judge_speak.text = "")
 	get_tree().create_timer(6.0,true,false,true).timeout.connect(func(): judge_state = "eq")
 
-func _process(delta: float) -> void:	
+func _process(delta: float) -> void:
 	process_judge()
 	end_timer -= delta if end_timer > 0.0 else 0.0
 	if end_timer < 0.0:
 		judge_state = "STOP"
 		winner = eval_winner()
-		Engine.time_scale = 0
+		#Engine.time_scale = 0
+		get_tree().paused = true
 		get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): judge_state = winner+"point")
 		get_tree().create_timer(4.0,true,false,true).timeout.connect(func(): modifyScoreboard(winner))
 		get_tree().create_timer(5.0,true,false,true).timeout.connect(reset)
@@ -166,11 +168,20 @@ func other(s : String):
 		_: return ""
 
 func _player_action(p, action):
-	if action == "back":
-		priority[p] = -1
-	if action == "forward" and priority[other(p)] <= 0:
-		priority[p] = 1
-	if action == "lunge":
-		prioTimeLooser[p] = 0.5 if prioTimeLooser[p] == 0.0 else prioTimeLooser[p]
-	if action == "attack":
-		prioTimeLooser[p] = 0.5 if prioTimeLooser[p] == 0.0 else prioTimeLooser[p]
+	if get_tree().paused == false:
+		if action == "back":
+			priority[p] = -1
+		if action == "forward" and priority[other(p)] <= 0:
+			priority[p] = 1
+		if action == "lunge":
+			prioTimeLooser[p] = 0.5 if prioTimeLooser[p] == 0.0 else prioTimeLooser[p]
+		if action == "attack":
+			prioTimeLooser[p] = 0.5 if prioTimeLooser[p] == 0.0 else prioTimeLooser[p]
+
+func _on_main_ui_start() -> void:
+	reset()
+	print("yay")
+	scores = {"p1":0,"p2":0, "simultan" : 0}
+	$scoreP1.text = str(scores["p1"])
+	$scoreP2.text = str(scores["p2"])
+	start()

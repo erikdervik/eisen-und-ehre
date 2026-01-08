@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://c8b3dckx4gc31"]
+[gd_scene load_steps=71 format=3 uid="uid://c8b3dckx4gc31"]
 
 [ext_resource type="Script" uid="uid://o3ue1pvjb42b" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://bkiqi8755qk7u" path="res://assets/sprites/kampfrichter/sheet.png" id="2_e2o6t"]
@@ -37,6 +37,7 @@
 [ext_resource type="AudioStream" uid="uid://bfktnrya5aagh" path="res://assets/sounds/parry/parry-15.mp3" id="34_avmo2"]
 [ext_resource type="PackedScene" uid="uid://uhkw8ibv7ur7" path="res://main_ui.tscn" id="36_aa0lp"]
 [ext_resource type="Texture2D" uid="uid://dair51oc7hgui" path="res://assets/sprites/background/background.png" id="37_iu0sx"]
+[ext_resource type="PackedScene" uid="uid://3mi7rplbhil8" path="res://hit.tscn" id="38_4v2jo"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e2o6t"]
 distance = -278.0
@@ -64,14 +65,6 @@ region = Rect2(44, 286, 44, 22)
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5wjh"]
 atlas = ExtResource("2_e2o6t")
 region = Rect2(0, 242, 44, 22)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vef74"]
-atlas = ExtResource("2_e2o6t")
-region = Rect2(0, 22, 44, 22)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hve3p"]
-atlas = ExtResource("2_e2o6t")
-region = Rect2(44, 22, 44, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mfdv2"]
 atlas = ExtResource("2_e2o6t")
@@ -149,26 +142,6 @@ region = Rect2(836, 22, 44, 22)
 atlas = ExtResource("2_e2o6t")
 region = Rect2(880, 22, 44, 22)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_36jdj"]
-atlas = ExtResource("2_e2o6t")
-region = Rect2(924, 22, 44, 22)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xfvwf"]
-atlas = ExtResource("2_e2o6t")
-region = Rect2(968, 22, 44, 22)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dhpj7"]
-atlas = ExtResource("2_e2o6t")
-region = Rect2(1012, 22, 44, 22)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7knny"]
-atlas = ExtResource("2_e2o6t")
-region = Rect2(1056, 22, 44, 22)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_082n1"]
-atlas = ExtResource("2_e2o6t")
-region = Rect2(1100, 22, 44, 22)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_xex6t"]
 atlas = ExtResource("2_e2o6t")
 region = Rect2(0, 110, 44, 22)
@@ -235,21 +208,15 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_j5wjh")
 }],
-"loop": true,
+"loop": false,
 "name": &"Simultanees",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vef74")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hve3p")
-}, {
-"duration": 1.0,
+"duration": 6.0,
 "texture": SubResource("AtlasTexture_mfdv2")
 }, {
-"duration": 1.0,
+"duration": 4.0,
 "texture": SubResource("AtlasTexture_iotsf")
 }, {
 "duration": 1.0,
@@ -300,23 +267,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5b14r")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_bnpwn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_36jdj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xfvwf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dhpj7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7knny")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_082n1")
 }],
 "loop": false,
 "name": &"StellungFertigLos",
@@ -342,7 +294,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iu0sx")
 }],
-"loop": true,
+"loop": false,
 "name": &"halt",
 "speed": 5.0
 }, {
@@ -350,7 +302,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4v2jo")
 }],
-"loop": true,
+"loop": false,
 "name": &"konterattacke(links)",
 "speed": 5.0
 }, {
@@ -358,7 +310,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l1i01")
 }],
-"loop": true,
+"loop": false,
 "name": &"konterattacke(rechts)",
 "speed": 5.0
 }]
@@ -393,17 +345,19 @@ offset_bottom = 115.0
 text = "0"
 
 [node name="judge" type="AnimatedSprite2D" parent="."]
+process_mode = 3
 position = Vector2(-1, 204)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_r62pu")
-animation = &"konterattacke(links)"
+animation = &"StellungFertigLos"
 
 [node name="judge_speak" type="RichTextLabel" parent="."]
-offset_left = -21.0
-offset_top = -135.0
-offset_right = 130.0
-offset_bottom = -64.0
+offset_left = -83.0
+offset_top = 105.0
+offset_right = 68.0
+offset_bottom = 176.0
 bbcode_enabled = true
+text = "aaaaaa"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -417,3 +371,19 @@ z_index = -1
 position = Vector2(0, 114)
 scale = Vector2(2, 2)
 texture = ExtResource("37_iu0sx")
+
+[node name="End1" parent="." instance=ExtResource("38_4v2jo")]
+position = Vector2(-357, 271)
+permanent = true
+player = "p2"
+sound = false
+
+[node name="End2" parent="." instance=ExtResource("38_4v2jo")]
+position = Vector2(326, 271)
+permanent = true
+player = "p1"
+sound = false
+
+[connection signal="start" from="MainUI" to="." method="_on_main_ui_start"]
+[connection signal="hit" from="End1" to="." method="_on_hit"]
+[connection signal="hit" from="End2" to="." method="_on_hit"]

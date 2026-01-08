@@ -9,9 +9,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print("PROCESS")
 	if is_active:
-		Engine.time_scale = 0
+		#Engine.time_scale = 0
+		get_tree().paused = true
 		visible = true
 	else:
 		if Input.is_action_just_pressed("escape"):
@@ -19,9 +19,6 @@ func _process(delta: float) -> void:
 
 
 func _on_play_button_down() -> void:
-	#CALLE DIE STARTFUNKTION ANSTATT EINFACH LOSZUMACHEN
-	Engine.time_scale = 1
-	print("YOY")
 	is_active = false
 	visible = false
 	emit_signal("start")

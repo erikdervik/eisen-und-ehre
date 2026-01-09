@@ -1,7 +1,7 @@
 # eisen und ehre
 
 ## TODO
-- [ ] MAIN UI: startfunktion statt Engine.timescale = 0
+- [x] MAIN UI: startfunktion statt Engine.timescale = 0
 - [ ] Endlinie (HITBOX)
 - [x] sound effekte (Aufgenommen?)
 - [ ] silas Sounds

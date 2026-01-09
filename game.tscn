@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://c8b3dckx4gc31"]
+[gd_scene load_steps=75 format=3 uid="uid://c8b3dckx4gc31"]
 
 [ext_resource type="Script" uid="uid://o3ue1pvjb42b" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://bkiqi8755qk7u" path="res://assets/sprites/kampfrichter/sheet.png" id="2_e2o6t"]
@@ -41,6 +41,7 @@
 [ext_resource type="AudioStream" uid="uid://0xfbs0dbwjof" path="res://assets/sounds/silas/allez.mp3" id="37_edr7y"]
 [ext_resource type="Texture2D" uid="uid://dair51oc7hgui" path="res://assets/sprites/background/background.png" id="37_iu0sx"]
 [ext_resource type="PackedScene" uid="uid://3mi7rplbhil8" path="res://hit.tscn" id="38_4v2jo"]
+[ext_resource type="FontFile" uid="uid://dpdhu1d8axw42" path="res://assets/fonts/5x5-font-monospaced.ttf" id="38_eu6ph"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e2o6t"]
 distance = -278.0
@@ -328,8 +329,8 @@ pret = ExtResource("36_eu6ph")
 allez = ExtResource("37_edr7y")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 130)
-zoom = Vector2(0.8, 0.8)
+position = Vector2(0, 109)
+zoom = Vector2(1.4, 1.4)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -337,17 +338,21 @@ zoom = Vector2(0.8, 0.8)
 shape = SubResource("WorldBoundaryShape2D_e2o6t")
 
 [node name="scoreP1" type="Label" parent="."]
-offset_left = 50.0
-offset_top = 92.0
-offset_right = 90.0
-offset_bottom = 115.0
+offset_left = 49.0
+offset_top = 99.0
+offset_right = 89.0
+offset_bottom = 122.0
+theme_override_fonts/font = ExtResource("38_eu6ph")
+theme_override_font_sizes/font_size = 10
 text = "0"
 
 [node name="scoreP2" type="Label" parent="."]
-offset_left = -52.0
-offset_top = 92.0
-offset_right = -12.0
-offset_bottom = 115.0
+offset_left = -53.0
+offset_top = 99.0
+offset_right = -13.0
+offset_bottom = 122.0
+theme_override_fonts/font = ExtResource("38_eu6ph")
+theme_override_font_sizes/font_size = 10
 text = "0"
 
 [node name="judge" type="AnimatedSprite2D" parent="."]
@@ -358,10 +363,12 @@ sprite_frames = SubResource("SpriteFrames_r62pu")
 animation = &"StellungFertigLos"
 
 [node name="judge_speak" type="RichTextLabel" parent="."]
-offset_left = -83.0
+offset_left = -82.0
 offset_top = 105.0
-offset_right = 68.0
+offset_right = 69.0
 offset_bottom = 176.0
+theme_override_fonts/normal_font = ExtResource("38_eu6ph")
+theme_override_font_sizes/normal_font_size = 15
 bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -378,13 +385,13 @@ scale = Vector2(2, 2)
 texture = ExtResource("37_iu0sx")
 
 [node name="End1" parent="." instance=ExtResource("38_4v2jo")]
-position = Vector2(-357, 271)
+position = Vector2(-389, 273)
 permanent = true
 player = "p2"
 sound = false
 
 [node name="End2" parent="." instance=ExtResource("38_4v2jo")]
-position = Vector2(326, 271)
+position = Vector2(367, 275)
 permanent = true
 player = "p1"
 sound = false
@@ -394,18 +401,20 @@ volume_db = -1.908
 
 [node name="p2Name" type="RichTextLabel" parent="."]
 offset_left = 1.0
-offset_top = 74.0
+offset_top = 80.0
 offset_right = 79.0
-offset_bottom = 100.0
-text = "Miguel"
+offset_bottom = 106.0
+theme_override_fonts/normal_font = ExtResource("38_eu6ph")
+theme_override_font_sizes/normal_font_size = 10
 horizontal_alignment = 2
 
 [node name="p1Name" type="RichTextLabel" parent="."]
 offset_left = -77.0
-offset_top = 74.0
+offset_top = 80.0
 offset_right = -2.0
-offset_bottom = 100.0
-text = "Luis"
+offset_bottom = 106.0
+theme_override_fonts/normal_font = ExtResource("38_eu6ph")
+theme_override_font_sizes/normal_font_size = 10
 
 [connection signal="start" from="MainUI" to="." method="_on_main_ui_start"]
 [connection signal="hit" from="End1" to="." method="_on_hit"]

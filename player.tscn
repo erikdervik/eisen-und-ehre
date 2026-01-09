@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://br7lgik01bxy8"]
+[gd_scene load_steps=52 format=3 uid="uid://br7lgik01bxy8"]
 
 [ext_resource type="Script" uid="uid://dh43ii3wk17t7" path="res://fechter.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bae2fiokyt4lm" path="res://assets/sprites/player1/fencing_sheet2.png" id="2_onrkg"]
@@ -21,6 +21,34 @@ region = Rect2(44, 220, 44, 44)
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
 atlas = ExtResource("2_onrkg")
 region = Rect2(88, 220, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ny14h"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(0, 396, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibah8"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(44, 396, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3iwfv"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(88, 396, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwsg1"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(132, 396, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xqrm"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(176, 396, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfour"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(220, 396, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gr2b"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(264, 396, 44, 44)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
 atlas = ExtResource("2_onrkg")
@@ -181,6 +209,32 @@ animations = [{
 "loop": true,
 "name": &"backwards",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ny14h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibah8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3iwfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwsg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xqrm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfour")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gr2b")
+}],
+"loop": true,
+"name": &"grüßen",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -397,4 +451,5 @@ shape = SubResource("RectangleShape2D_onrkg")
 position = Vector2(10, -32)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_q13i1")
-animation = &"parade"
+animation = &"grüßen"
+frame_progress = 0.43403277

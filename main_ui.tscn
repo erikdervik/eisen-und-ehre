@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://uhkw8ibv7ur7"]
+[gd_scene load_steps=2 format=3 uid="uid://uhkw8ibv7ur7"]
 
 [ext_resource type="Script" uid="uid://c5320oeusqo1d" path="res://main_ui.gd" id="1_2ppmm"]
-[ext_resource type="FontFile" uid="uid://dpdhu1d8axw42" path="res://assets/fonts/5x5-font-monospaced.ttf" id="2_w37m7"]
 
 [node name="MainUI" type="Control"]
 process_mode = 3
@@ -18,72 +17,34 @@ script = ExtResource("1_2ppmm")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 518.0
-offset_top = 84.0
-offset_right = 779.0
-offset_bottom = 111.0
-theme_override_fonts/normal_font = ExtResource("2_w37m7")
-theme_override_font_sizes/normal_font_size = 10
-text = "EISEN UND EHRE"
+offset_left = 547.0
+offset_top = 16.0
+offset_right = 676.0
+offset_bottom = 43.0
+text = "Eisen und ehre"
 
 [node name="play" type="Button" parent="."]
 layout_mode = 0
-offset_left = 560.0
+offset_left = 566.0
 offset_top = 131.0
-offset_right = 640.0
+offset_right = 637.0
 offset_bottom = 162.0
-theme_override_fonts/font = ExtResource("2_w37m7")
-theme_override_font_sizes/font_size = 15
-text = "PLAY"
+text = "Play"
 
 [node name="LinkButton" type="LinkButton" parent="."]
 layout_mode = 0
-offset_left = 280.0
-offset_top = 32.0
-offset_right = 550.0
-offset_bottom = 56.0
-theme_override_constants/outline_size = 6
-theme_override_fonts/font = ExtResource("2_w37m7")
-theme_override_font_sizes/font_size = 15
+offset_left = 697.0
+offset_top = 301.0
+offset_right = 802.0
+offset_bottom = 325.0
 text = "https://itch.io"
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 260.0
-offset_top = -63.0
-offset_right = 740.0
-offset_bottom = 8.0
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_fonts/normal_font = ExtResource("2_w37m7")
-theme_override_font_sizes/normal_font_size = 15
-text = "
- A GAME BY ERIK GUBO AND 
-
- MIRKO BODENMULLER"
-
-[node name="Label" type="Label" parent="RichTextLabel3"]
-layout_mode = 0
-offset_left = 213.0
-offset_top = 11.0
-offset_right = 253.0
-offset_bottom = 34.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_w37m7")
-theme_override_font_sizes/font_size = 15
-text = "."
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 499.0
-offset_top = -20.0
-offset_right = 539.0
-offset_bottom = 3.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_w37m7")
-theme_override_font_sizes/font_size = 15
-text = "."
+offset_left = 262.0
+offset_top = 292.0
+offset_right = 676.0
+offset_bottom = 351.0
+text = "A game by Erik Gubo and Mirko Bodenmüller"
 
 [connection signal="button_down" from="play" to="." method="_on_play_button_down"]

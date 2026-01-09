@@ -33,7 +33,7 @@ func play_silas_sound(sound, language="fr"):
 		silas_player.stream = sound.pick_random()
 	else:
 		silas_player.stream = sound
-	audio_player.play()
+	silas_player.play()
 
 func play_sound(sound):
 	if typeof(sound) == TYPE_ARRAY:

@@ -328,8 +328,8 @@ pret = ExtResource("36_eu6ph")
 allez = ExtResource("37_edr7y")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 130)
-zoom = Vector2(0.8, 0.8)
+position = Vector2(0, 114)
+zoom = Vector2(1.4, 1.4)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -337,17 +337,21 @@ zoom = Vector2(0.8, 0.8)
 shape = SubResource("WorldBoundaryShape2D_e2o6t")
 
 [node name="scoreP1" type="Label" parent="."]
-offset_left = 50.0
-offset_top = 92.0
-offset_right = 90.0
-offset_bottom = 115.0
+offset_left = 46.0
+offset_top = 99.0
+offset_right = 86.0
+offset_bottom = 122.0
+theme_override_fonts/font = ExtResource("35_l1i01")
+theme_override_font_sizes/font_size = 10
 text = "0"
 
 [node name="scoreP2" type="Label" parent="."]
-offset_left = -52.0
-offset_top = 92.0
-offset_right = -12.0
-offset_bottom = 115.0
+offset_left = -56.0
+offset_top = 99.0
+offset_right = -16.0
+offset_bottom = 122.0
+theme_override_fonts/font = ExtResource("35_l1i01")
+theme_override_font_sizes/font_size = 10
 text = "0"
 
 [node name="judge" type="AnimatedSprite2D" parent="."]
@@ -378,13 +382,13 @@ scale = Vector2(2, 2)
 texture = ExtResource("37_iu0sx")
 
 [node name="End1" parent="." instance=ExtResource("38_4v2jo")]
-position = Vector2(-357, 271)
+position = Vector2(-389, 275)
 permanent = true
 player = "p2"
 sound = false
 
 [node name="End2" parent="." instance=ExtResource("38_4v2jo")]
-position = Vector2(326, 271)
+position = Vector2(367, 272)
 permanent = true
 player = "p1"
 sound = false

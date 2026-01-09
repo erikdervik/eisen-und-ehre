@@ -12,7 +12,8 @@
 - [x] Text mit En garde prêt allez!
 - [x] Grafiken für Alles
 - [x] Credits
-- [ ] Secrets (namen)
+- [x] Secrets (namen)
+- [x] Ben ist OP?
 - [x] Settings
 - [x] Sprung multiplizert Lunge Velocity
 - [x] Angriffsrecht system Fixen (simultanée)

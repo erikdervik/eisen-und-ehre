@@ -4,13 +4,10 @@ var player = load("res://player.tscn")
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 @export var hit_sounds: Array[AudioStream] = []
 @export var parry_sounds: Array[AudioStream] = []
-
 @onready var silas_player: AudioStreamPlayer = $silasPlayer
-
 @export var en_garde: AudioStream
 @export var pret: AudioStream
 @export var allez: AudioStream
-
 @export var attaque_a_gauche_touche: AudioStream
 @export var attaque_simultane: AudioStream
 @export var attaque_a_droite_touche: AudioStream
@@ -27,9 +24,9 @@ var end_timer = 0.0
 var hasHit = {"p1":false,"p2":false}
 var scores = {"p1":0,"p2":0, "simultan" : 0}
 var winner
-var startpos1 = Vector2(-72,265)
-var startpos2 = Vector2(72,265)
-
+const startpos1 = Vector2(-72,265)
+const startpos2 = Vector2(72,265)
+const people = ["Silas","Laura","Lotte","Imke","Luis","Jan","Mirko","Erik","Justus","Charlotte","Miguel","Felix","Alex","Niklas","Ben","Emil","Hilde","Rico"]
 func play_silas_sound(sound, language="fr"):
 	if typeof(sound) == TYPE_ARRAY:
 		audio_player.stream = sound.pick_random()
@@ -137,8 +134,6 @@ func process_judge():
 func start():
 	judge_state="start"
 	$judge.play("StellungFertigLos")
-	#Engine.time_scale = 1
-	#get_tree().paused = false
 	get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): play_silas_sound(en_garde))
 	get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): $judge_speak.text =  "en Garde")
 	get_tree().create_timer(2.0,true,false,true).timeout.connect(func(): $judge_speak.text = "pret")
@@ -199,6 +194,20 @@ func _player_action(p, action):
 			prioTimeLooser[p] = 0.5 if prioTimeLooser[p] == 0.0 else prioTimeLooser[p]
 
 func _on_main_ui_start() -> void:
+	#$p1Name.text = people.pick_random()
+	$p1Name.text = "Ben"
+	$p2Name.text = people.pick_random()
+	
+	if $p1Name.text == "Ben":
+		p1.isBen = 1
+	else:
+		p1.isBen = 0
+
+	if $p2Name.text == "Ben":
+		p2.isBen = 1
+	else:
+		p2.isBen = 0
+
 	reset()
 	print("yay")
 	scores = {"p1":0,"p2":0, "simultan" : 0}

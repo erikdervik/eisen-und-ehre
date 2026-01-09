@@ -378,7 +378,7 @@ volume_db = 24.0
 
 [node name="MainUI" parent="." instance=ExtResource("36_aa0lp")]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="background" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(0, 114)
 scale = Vector2(2, 2)
@@ -397,7 +397,7 @@ player = "p1"
 sound = false
 
 [node name="silasPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -1.908
+volume_db = -4.77
 
 [node name="p2Name" type="RichTextLabel" parent="."]
 offset_left = 1.0

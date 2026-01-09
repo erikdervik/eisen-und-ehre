@@ -406,7 +406,6 @@ offset_right = 79.0
 offset_bottom = 106.0
 theme_override_fonts/normal_font = ExtResource("38_eu6ph")
 theme_override_font_sizes/normal_font_size = 10
-text = "Miguel"
 horizontal_alignment = 2
 
 [node name="p1Name" type="RichTextLabel" parent="."]
@@ -416,7 +415,6 @@ offset_right = -2.0
 offset_bottom = 106.0
 theme_override_fonts/normal_font = ExtResource("38_eu6ph")
 theme_override_font_sizes/normal_font_size = 10
-text = "Luis"
 
 [connection signal="start" from="MainUI" to="." method="_on_main_ui_start"]
 [connection signal="hit" from="End1" to="." method="_on_hit"]

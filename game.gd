@@ -1,6 +1,7 @@
 extends Node2D
 
 var player = load("res://player.tscn")
+
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 @export var hit_sounds: Array[AudioStream] = []
 @export var parry_sounds: Array[AudioStream] = []
@@ -26,12 +27,12 @@ var scores = {"p1":0,"p2":0, "simultan" : 0}
 var winner
 const startpos1 = Vector2(-72,265)
 const startpos2 = Vector2(72,265)
-const people = ["Silas","Laura","Lotte","Imke","Luis","Jan","Mirko","Erik","Justus","Charlotte","Miguel","Felix","Alex","Niklas","Ben","Emil","Hilde","Rico"]
+const people = ["SILAS","LAURA","LOTTE","IMKE","LUIS","JAN","MIRKO","ERIK","JUSTUS","CHARLOTTE","MIGUEL","FELIX","ALEX","NIKLAS","BEN","EMIL","HILDE","RICO"]
 func play_silas_sound(sound, language="fr"):
 	if typeof(sound) == TYPE_ARRAY:
-		audio_player.stream = sound.pick_random()
+		silas_player.stream = sound.pick_random()
 	else:
-		audio_player.stream = sound
+		silas_player.stream = sound
 	audio_player.play()
 
 func play_sound(sound):
@@ -194,8 +195,7 @@ func _player_action(p, action):
 			prioTimeLooser[p] = 0.5 if prioTimeLooser[p] == 0.0 else prioTimeLooser[p]
 
 func _on_main_ui_start() -> void:
-	#$p1Name.text = people.pick_random()
-	$p1Name.text = "Ben"
+	$p1Name.text = people.pick_random()
 	$p2Name.text = people.pick_random()
 	
 	if $p1Name.text == "Ben":

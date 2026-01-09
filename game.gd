@@ -4,6 +4,19 @@ var player = load("res://player.tscn")
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 @export var hit_sounds: Array[AudioStream] = []
 @export var parry_sounds: Array[AudioStream] = []
+
+@onready var silas_player: AudioStreamPlayer = $silasPlayer
+
+@export var en_garde: AudioStream
+@export var pret: AudioStream
+@export var allez: AudioStream
+
+@export var attaque_a_gauche_touche: AudioStream
+@export var attaque_simultane: AudioStream
+@export var attaque_a_droite_touche: AudioStream
+@export var halte: AudioStream
+
+
 var judge_state = ""
 var p1
 var p2
@@ -17,14 +30,18 @@ var winner
 var startpos1 = Vector2(-72,265)
 var startpos2 = Vector2(72,265)
 
-func play_sound(sound):
-	if hit_sounds.is_empty():
-		return
+func play_silas_sound(sound, language="fr"):
 	if typeof(sound) == TYPE_ARRAY:
 		audio_player.stream = sound.pick_random()
 	else:
 		audio_player.stream = sound
-	
+	audio_player.play()
+
+func play_sound(sound):
+	if typeof(sound) == TYPE_ARRAY:
+		audio_player.stream = sound.pick_random()
+	else:
+		audio_player.stream = sound
 	audio_player.play()
 
 func _on_hit(p, parries, sound):
@@ -122,9 +139,12 @@ func start():
 	$judge.play("StellungFertigLos")
 	#Engine.time_scale = 1
 	#get_tree().paused = false
+	get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): play_silas_sound(en_garde))
 	get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): $judge_speak.text =  "en Garde")
 	get_tree().create_timer(2.0,true,false,true).timeout.connect(func(): $judge_speak.text = "pret")
+	get_tree().create_timer(2.0,true,false,true).timeout.connect(func(): play_silas_sound(pret))
 	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): $judge_speak.text = "allez!")
+	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): play_silas_sound(allez))
 	get_tree().create_timer(4.0,true,false,true).timeout.connect(func(): get_tree().paused = false)
 	get_tree().create_timer(6.0,true,false,true).timeout.connect(func(): $judge_speak.text = "")
 	get_tree().create_timer(6.0,true,false,true).timeout.connect(func(): judge_state = "eq")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://c8b3dckx4gc31"]
+[gd_scene load_steps=74 format=3 uid="uid://c8b3dckx4gc31"]
 
 [ext_resource type="Script" uid="uid://o3ue1pvjb42b" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://bkiqi8755qk7u" path="res://assets/sprites/kampfrichter/sheet.png" id="2_e2o6t"]
@@ -35,7 +35,10 @@
 [ext_resource type="AudioStream" uid="uid://cmgpljhsddnv0" path="res://assets/sounds/parry/parry-13.mp3" id="32_jo4nb"]
 [ext_resource type="AudioStream" uid="uid://gocsqvuuw7tm" path="res://assets/sounds/parry/parry-14.mp3" id="33_56gn1"]
 [ext_resource type="AudioStream" uid="uid://bfktnrya5aagh" path="res://assets/sounds/parry/parry-15.mp3" id="34_avmo2"]
+[ext_resource type="AudioStream" uid="uid://cdygdhmo6gcp5" path="res://assets/sounds/silas/engarde.mp3" id="35_klri6"]
 [ext_resource type="PackedScene" uid="uid://uhkw8ibv7ur7" path="res://main_ui.tscn" id="36_aa0lp"]
+[ext_resource type="AudioStream" uid="uid://c313jneg60gtf" path="res://assets/sounds/silas/pret.mp3" id="36_eu6ph"]
+[ext_resource type="AudioStream" uid="uid://0xfbs0dbwjof" path="res://assets/sounds/silas/allez.mp3" id="37_edr7y"]
 [ext_resource type="Texture2D" uid="uid://dair51oc7hgui" path="res://assets/sprites/background/background.png" id="37_iu0sx"]
 [ext_resource type="PackedScene" uid="uid://3mi7rplbhil8" path="res://hit.tscn" id="38_4v2jo"]
 
@@ -320,6 +323,9 @@ process_mode = 3
 script = ExtResource("1_e2o6t")
 hit_sounds = Array[AudioStream]([ExtResource("2_xex6t"), ExtResource("3_aa0lp"), ExtResource("4_iu0sx"), ExtResource("5_4v2jo"), ExtResource("6_l1i01"), ExtResource("7_r62pu"), ExtResource("8_klri6"), ExtResource("9_eu6ph"), ExtResource("10_edr7y"), ExtResource("11_kq12w"), ExtResource("12_t46w6"), ExtResource("13_m28ev"), ExtResource("14_lwlx3"), ExtResource("15_0de7l"), ExtResource("16_87ddb"), ExtResource("17_mljfx"), ExtResource("18_qpefm"), ExtResource("19_tb2lt")])
 parry_sounds = Array[AudioStream]([ExtResource("20_cfc7e"), ExtResource("21_gh0px"), ExtResource("22_v33yl"), ExtResource("23_2tki7"), ExtResource("24_ib7ph"), ExtResource("25_vuohh"), ExtResource("26_3gvs5"), ExtResource("27_mc3al"), ExtResource("28_bqa6y"), ExtResource("29_du4n2"), ExtResource("30_ra4rb"), ExtResource("31_ple6s"), ExtResource("32_jo4nb"), ExtResource("33_56gn1"), ExtResource("34_avmo2")])
+en_garde = ExtResource("35_klri6")
+pret = ExtResource("36_eu6ph")
+allez = ExtResource("37_edr7y")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 130)
@@ -383,6 +389,9 @@ position = Vector2(326, 271)
 permanent = true
 player = "p1"
 sound = false
+
+[node name="silasPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -1.908
 
 [connection signal="start" from="MainUI" to="." method="_on_main_ui_start"]
 [connection signal="hit" from="End1" to="." method="_on_hit"]

@@ -108,8 +108,14 @@ func _physics_process(delta: float) -> void:
 		
 		if (player == "p1" and Input.is_action_pressed("p1_right") or player == "p2" and Input.is_action_pressed("p2_left")) and state in CAN_FOWARD:
 			state = "FORWARD"
-			$AnimatedSprite2D.play("walk")
-			velocity.x = direction * SPEED * delta
+			
+			if player == "p1" and Input.is_action_pressed("p1_sprint") or player == "p2" and Input.is_action_pressed("p2_sprint"):
+				$AnimatedSprite2D.play("sprint")
+				print("SPRINT")
+				velocity.x = direction * SPEED * delta * 1.5
+			else:
+				$AnimatedSprite2D.play("walk")
+				velocity.x = direction * SPEED * delta
 			emit_signal("action",player,"forward") # gain priority a little bit
 		elif (player == "p1" and Input.is_action_pressed("p1_left") or player == "p2" and Input.is_action_pressed("p2_right")) and state in CAN_BACK:
 			state = "BACK"

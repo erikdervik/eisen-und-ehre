@@ -7,13 +7,13 @@
 - [ ] silas Sounds
 - [ ] Musik (aufgenommen????? Gitarre + Bass + Ukulele?)
 - [x] Kampfrichter
-- [ ] Starmenü
+- [x] Starmenü
 - [ ] Ende
 - [x] Text mit En garde prêt allez!
-- [ ] Grafiken für Alles
-- [ ] Credits
-- [ ] Secrets
-- [ ] Settings
+- [x] Grafiken für Alles
+- [x] Credits
+- [ ] Secrets (namen)
+- [x] Settings
 - [x] Sprung multiplizert Lunge Velocity
 - [x] Angriffsrecht system Fixen (simultanée)
 - [ ] Itch.io Page

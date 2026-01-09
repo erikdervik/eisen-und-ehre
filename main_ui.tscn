@@ -40,26 +40,27 @@ theme_override_font_sizes/font_size = 20
 text = "PLAY"
 
 [node name="LinkButton" type="LinkButton" parent="."]
+z_index = 10
 layout_mode = 0
-offset_left = 261.0
-offset_top = 1.0
-offset_right = 531.0
-offset_bottom = 25.0
+offset_left = 262.0
+offset_top = 262.0
+offset_right = 778.0
+offset_bottom = 286.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_w37m7")
-theme_override_font_sizes/font_size = 15
-text = "https://itch.io"
+theme_override_font_sizes/font_size = 10
+text = "https://willowsprout.itch.io/eisen-und-ehre"
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 245.0
 offset_top = -79.0
-offset_right = 708.0
+offset_right = 839.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("2_w37m7")
 theme_override_font_sizes/normal_font_size = 15
 text = "
- A GAME BY ERIK GUBO AND 
+ A GAME BY ERIK GUBO AND
 
  MIRKO BODENMULLER"
 

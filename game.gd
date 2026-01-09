@@ -92,6 +92,13 @@ func modifyScoreboard(win):
 	$scoreP2.text = str(scores["p2"])
 
 func reset():
+	p1.parryTime = -INF
+	p1.lungeTime = -INF
+	p1.attackTime = -INF
+
+	p2.parryTime = -INF
+	p2.lungeTime = -INF
+	p2.attackTime = -INF
 	p1.position = startpos1
 	p2.position = startpos2
 	hasHit = {"p1":false,"p2":false}
@@ -104,11 +111,11 @@ func process_judge():
 	if judge_state in ["p1", "", "p2", "eq"]:
 		judge_state = eval_priority()
 	if judge_state == "STOP":
-		$judge_speak.text = "STOP"
+		$judge_speak.text = "HALTE"
 	elif judge_state =="p1point":
-		$judge_speak.text = "p1point"
+		$judge_speak.text = "ATTACKE A GAUCHE TOUCHE"
 	elif judge_state =="p2point":
-		$judge_speak.text = "p2point"
+		$judge_speak.text = "ATTAQUE A DROITE TOUCHE"
 	elif $judge_speak.text in ["STOP","p1point","p2point"]:
 		$judge_speak.text = ""
 
@@ -136,16 +143,18 @@ func start():
 	judge_state="start"
 	$judge.play("StellungFertigLos")
 	get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): play_silas_sound(en_garde))
-	get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): $judge_speak.text =  "en Garde")
-	get_tree().create_timer(2.0,true,false,true).timeout.connect(func(): $judge_speak.text = "pret")
+	get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): $judge_speak.text =  "EN GARDE")
+	get_tree().create_timer(2.0,true,false,true).timeout.connect(func(): $judge_speak.text = "PRET")
 	get_tree().create_timer(2.0,true,false,true).timeout.connect(func(): play_silas_sound(pret))
-	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): $judge_speak.text = "allez!")
+	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): $judge_speak.text = "ALLEZ!")
 	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): play_silas_sound(allez))
 	get_tree().create_timer(4.0,true,false,true).timeout.connect(func(): get_tree().paused = false)
 	get_tree().create_timer(6.0,true,false,true).timeout.connect(func(): $judge_speak.text = "")
 	get_tree().create_timer(6.0,true,false,true).timeout.connect(func(): judge_state = "eq")
 
 func _process(delta: float) -> void:
+	$p2Name.visible = not $MainUI.is_active
+	$p1Name.visible =  not $MainUI.is_active
 	process_judge()
 	end_timer -= delta if end_timer > 0.0 else 0.0
 	if end_timer < 0.0:
@@ -198,19 +207,24 @@ func _on_main_ui_start() -> void:
 	$p1Name.text = people.pick_random()
 	$p2Name.text = people.pick_random()
 	
-	if $p1Name.text == "Ben":
+	if $p1Name.text == "BEN":
 		p1.isBen = 1
 	else:
 		p1.isBen = 0
 
-	if $p2Name.text == "Ben":
+	if $p2Name.text == "BEN":
 		p2.isBen = 1
 	else:
 		p2.isBen = 0
-
 	reset()
-	print("yay")
 	scores = {"p1":0,"p2":0, "simultan" : 0}
 	$scoreP1.text = str(scores["p1"])
 	$scoreP2.text = str(scores["p2"])
-	start()
+	p1.noInput = true
+	p2.noInput = true
+	get_tree().paused = false
+	p1.play_anim("gruessen")
+	p2.play_anim("gruessen")
+	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): start())
+	get_tree().create_timer(8.0,true,false,true).timeout.connect(func(): p2.noInput = false)
+	get_tree().create_timer(8.0,true,false,true).timeout.connect(func(): p1.noInput = false)

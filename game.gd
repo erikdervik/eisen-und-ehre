@@ -25,9 +25,9 @@ var end_timer = 0.0
 var hasHit = {"p1":false,"p2":false}
 var scores = {"p1":0,"p2":0, "simultan" : 0}
 var winner
-const startpos1 = Vector2(-102,265)
-const startpos2 = Vector2(102,265)
-const people = ["SILAS","LAURA","LOTTE","IMKE","LUIS","JAN","MIRKO","ERIK","JUSTUS","CHARLOTTE","MIGUEL","FELIX","ALEX","NIKLAS","BEN","EMIL","HILDE","RICO"]
+const startpos1 = Vector2(-72,265)
+const startpos2 = Vector2(72,265)
+const people = ["MATTI","MIKA","RAMONA","MIKA","MATTI","LOTTE","IMKE","LUIS","JAN","MIRKO","ERIK","JUSTUS","CHARLOTTE","MIGUEL","FELIX","ALEX","NIKLAS","BEN","EMIL","HILDE","RICO"]
 func play_silas_sound(sound, language="fr"):
 	if typeof(sound) == TYPE_ARRAY:
 		silas_player.stream = sound.pick_random()
@@ -106,16 +106,19 @@ func reset():
 	priority = {"p1":1, "p2":1}
 	freeze_priority = false
 	end_timer = 0.0
-
+	
 func process_judge():
 	if judge_state in ["p1", "", "p2", "eq"]:
 		judge_state = eval_priority()
-	if judge_state == "STOP":
+	if judge_state == "STOP":		
 		$judge_speak.text = "HALTE"
 	elif judge_state =="p1point":
-		$judge_speak.text = "ATTACKE A GAUCHE TOUCHE"
+		$judge_speak.text = "ATTAQUEE A GAUCHE TOUCHE"
 	elif judge_state =="p2point":
 		$judge_speak.text = "ATTAQUE A DROITE TOUCHE"
+	elif judge_state == "simultanpoint":
+		$judge_speak.text = "ATTAQUE SIMLUTANEE"
+
 	elif $judge_speak.text in ["STOP","p1point","p2point"]:
 		$judge_speak.text = ""
 
@@ -138,6 +141,8 @@ func process_judge():
 			$judge.play("Idle")
 	# Set label
 	# change Animations
+func end():
+	print("ENDE GELENDE")
 
 func start():
 	judge_state="start"
@@ -159,14 +164,23 @@ func _process(delta: float) -> void:
 	end_timer -= delta if end_timer > 0.0 else 0.0
 	if end_timer < 0.0:
 		judge_state = "STOP"
+		get_tree().create_timer(0.0,true,false,true).timeout.connect(func(): play_silas_sound(halte))
 		winner = eval_winner()
 		#Engine.time_scale = 0
 		get_tree().paused = true
 		get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): judge_state = winner+"point")
+		match winner:
+			"p1":
+				get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): play_silas_sound(attaque_a_gauche_touche))
+			"p2":
+				get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): play_silas_sound(attaque_a_droite_touche))
+			"simultan":
+				get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): play_silas_sound(attaque_simultane))
+			
 		get_tree().create_timer(4.0,true,false,true).timeout.connect(func(): modifyScoreboard(winner))
 		get_tree().create_timer(5.0,true,false,true).timeout.connect(reset)
-		get_tree().create_timer(7.0,true,false,true).timeout.connect(start)
-	
+		#get_tree().create_timer(7.0,true,false,true).timeout.connect(start)
+		get_tree().create_timer(7.0,true,false,true).timeout.connect(func(): start() if scores.values().max() < 1 else end())
 		end_timer = 0.0
 		
 

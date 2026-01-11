@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://c8b3dckx4gc31"]
+[gd_scene load_steps=79 format=3 uid="uid://c8b3dckx4gc31"]
 
 [ext_resource type="Script" uid="uid://o3ue1pvjb42b" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://bkiqi8755qk7u" path="res://assets/sprites/kampfrichter/sheet.png" id="2_e2o6t"]
@@ -42,6 +42,10 @@
 [ext_resource type="Texture2D" uid="uid://dair51oc7hgui" path="res://assets/sprites/background/background.png" id="37_iu0sx"]
 [ext_resource type="PackedScene" uid="uid://3mi7rplbhil8" path="res://hit.tscn" id="38_4v2jo"]
 [ext_resource type="FontFile" uid="uid://dpdhu1d8axw42" path="res://assets/fonts/5x5-font-monospaced.ttf" id="38_eu6ph"]
+[ext_resource type="AudioStream" uid="uid://c2ctfb5d8udvq" path="res://assets/sounds/silas/attaque_a_gauche.mp3" id="38_m28ev"]
+[ext_resource type="AudioStream" uid="uid://cbgcpvw24abcp" path="res://assets/sounds/silas/attaque_simultane.mp3" id="39_lwlx3"]
+[ext_resource type="AudioStream" uid="uid://b0m5gnxvnf4si" path="res://assets/sounds/silas/attaque_a_droite.mp3" id="40_0de7l"]
+[ext_resource type="AudioStream" uid="uid://7ys3od0sohve" path="res://assets/sounds/silas/halt.mp3" id="41_87ddb"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e2o6t"]
 distance = -278.0
@@ -327,6 +331,10 @@ parry_sounds = Array[AudioStream]([ExtResource("20_cfc7e"), ExtResource("21_gh0p
 en_garde = ExtResource("35_klri6")
 pret = ExtResource("36_eu6ph")
 allez = ExtResource("37_edr7y")
+attaque_a_gauche_touche = ExtResource("38_m28ev")
+attaque_simultane = ExtResource("39_lwlx3")
+attaque_a_droite_touche = ExtResource("40_0de7l")
+halte = ExtResource("41_87ddb")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 109)

@@ -13,7 +13,6 @@ config_version=5
 config/name="Eisen und Ehre"
 run/main_scene="uid://c8b3dckx4gc31"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [display]
 

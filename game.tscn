@@ -387,13 +387,16 @@ scale = Vector2(2, 2)
 texture = ExtResource("37_iu0sx")
 
 [node name="End1" parent="." instance=ExtResource("38_4v2jo")]
-position = Vector2(-389, 273)
+visible = true
+show_behind_parent = true
+position = Vector2(-393, 274)
 permanent = true
 player = "p2"
 sound = false
 
 [node name="End2" parent="." instance=ExtResource("38_4v2jo")]
-position = Vector2(367, 275)
+visible = true
+position = Vector2(371, 275)
 permanent = true
 player = "p1"
 sound = false

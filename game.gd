@@ -25,8 +25,8 @@ var end_timer = 0.0
 var hasHit = {"p1":false,"p2":false}
 var scores = {"p1":0,"p2":0, "simultan" : 0}
 var winner
-const startpos1 = Vector2(-72,265)
-const startpos2 = Vector2(72,265)
+const startpos1 = Vector2(-102,265)
+const startpos2 = Vector2(102,265)
 const people = ["SILAS","LAURA","LOTTE","IMKE","LUIS","JAN","MIRKO","ERIK","JUSTUS","CHARLOTTE","MIGUEL","FELIX","ALEX","NIKLAS","BEN","EMIL","HILDE","RICO"]
 func play_silas_sound(sound, language="fr"):
 	if typeof(sound) == TYPE_ARRAY:
@@ -226,5 +226,5 @@ func _on_main_ui_start() -> void:
 	p1.play_anim("gruessen")
 	p2.play_anim("gruessen")
 	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): start())
-	get_tree().create_timer(8.0,true,false,true).timeout.connect(func(): p2.noInput = false)
-	get_tree().create_timer(8.0,true,false,true).timeout.connect(func(): p1.noInput = false)
+	get_tree().create_timer(6.0,true,false,true).timeout.connect(func(): p2.noInput = false)
+	get_tree().create_timer(6.0,true,false,true).timeout.connect(func(): p1.noInput = false)

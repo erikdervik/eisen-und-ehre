@@ -4,7 +4,6 @@
 - [ ] silas Sounds
 - [ ] Itch.io Page
 - [x] Musik (aufgenommen????? Gitarre + Bass + Ukulele?)
-
 - [x] Zeiten überall Anpassen
 - [x] Abgrüßen/thanks for playing/Danksagung
 - [x] Angrüß Animation sollte in Fechtstellung Enden

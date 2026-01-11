@@ -29,6 +29,9 @@ var isBen = 0
 var noInput = false
 signal action(player, action)
 
+var allstar := preload("res://player_allstar.tres")
+var uhlman := preload("res://player_uhlmann.tres")
+
 func spawn_hitbox(offset,lifetime):
 	var hitbox = hit.instantiate()
 	add_child(hitbox)
@@ -45,6 +48,7 @@ func _ready() -> void:
 	self.get_child(0).add_to_group(player)
 	direction = 1 if player == "p1" else -1
 	scale.x = scale.x if player == "p1" else -scale.x
+	$AnimatedSprite2D.sprite_frames = uhlman if player == "p1" else allstar
 
 func _physics_process(delta: float) -> void:		
 	parriesTimer = parriesTimer-delta if parriesTimer > 0.0 else 0.0

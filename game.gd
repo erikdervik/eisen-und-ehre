@@ -13,7 +13,8 @@ var player = load("res://player.tscn")
 @export var attaque_simultane: AudioStream
 @export var attaque_a_droite_touche: AudioStream
 @export var halte: AudioStream
-
+@export var vgauche: AudioStream
+@export var vright: AudioStream
 var judge_state = ""
 var p1
 var p2
@@ -151,12 +152,14 @@ func end():
 		p2.state = "ENDING"
 		$judge.play("win(rechts)")
 		$judge_speak.text = "VICTOIRE DE L'ESCRIMEUR A GAUCHE"
+		play_silas_sound(vgauche)
 		p2.play_anim("win")
 	else:
 		p1.state = "ENDING"
 		p2.state = "ENDING"
 		$judge.play("win(links)")
 		$judge_speak.text = "VICTOIRE DE L'ESCRIMEUSE A DROITE"
+		play_silas_sound(vright)
 		p1.play_anim("win")
 		
 	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): p1.play_anim("gruessen"))

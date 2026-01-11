@@ -205,7 +205,7 @@ func _process(delta: float) -> void:
 		get_tree().create_timer(5.0,true,false,true).timeout.connect(reset)
 		#get_tree().create_timer(7.0,true,false,true).timeout.connect(start)
 		@warning_ignore("standalone_ternary")
-		get_tree().create_timer(7.0,true,false,true).timeout.connect(func(): start() if scores.values().max() < 2 else end())
+		get_tree().create_timer(7.0,true,false,true).timeout.connect(func(): start() if scores.values().max() < 10 else end())
 		end_timer = 0.0
 		
 

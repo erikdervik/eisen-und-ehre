@@ -25,8 +25,8 @@ var end_timer = 0.0
 var hasHit = {"p1":false,"p2":false}
 var scores = {"p1":0,"p2":0, "simultan" : 0}
 var winner
-const startpos1 = Vector2(-72,265)
-const startpos2 = Vector2(72,265)
+const startpos1 = Vector2(-102,265)
+const startpos2 = Vector2(102,265)
 const people = ["MATTI","MIKA","RAMONA","MIKA","MATTI","LOTTE","IMKE","LUIS","JAN","MIRKO","ERIK","JUSTUS","CHARLOTTE","MIGUEL","FELIX","ALEX","NIKLAS","BEN","EMIL","HILDE","RICO"]
 func play_silas_sound(sound, language="fr"):
 	if typeof(sound) == TYPE_ARRAY:

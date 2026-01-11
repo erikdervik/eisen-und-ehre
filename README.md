@@ -1,13 +1,14 @@
 # eisen und ehre
 
 ## TODO
-- [ ] Angrüß Animation sollte in Fechtstellung Enden
-- [ ] Musik (aufgenommen????? Gitarre + Bass + Ukulele?)
-- [ ] Abgrüßen/thanks for playing/Danksagung
+- [ ] silas Sounds
 - [ ] Itch.io Page
-- [ ] Zeiten überall Anpassen
+- [x] Musik (aufgenommen????? Gitarre + Bass + Ukulele?)
+
+- [x] Zeiten überall Anpassen
+- [x] Abgrüßen/thanks for playing/Danksagung
+- [x] Angrüß Animation sollte in Fechtstellung Enden
 - [x] Lunge, ATTack, Parry cooldowns reset on reset()
-- [x] silas Sounds
 - [x] Angrüßen 
 - [x] Vernünftige Controls
 - [x] Endlinie (HITBOX)

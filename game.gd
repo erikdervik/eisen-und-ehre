@@ -14,7 +14,6 @@ var player = load("res://player.tscn")
 @export var attaque_a_droite_touche: AudioStream
 @export var halte: AudioStream
 
-
 var judge_state = ""
 var p1
 var p2
@@ -23,12 +22,12 @@ var priority = {"p1":1, "p2":1}
 var freeze_priority = false
 var end_timer = 0.0
 var hasHit = {"p1":false,"p2":false}
-var scores = {"p1":0,"p2":0, "simultan" : 0}
+var scores = {"p1":0,"p2":0, "simultan" : -2^63}
 var winner
 const startpos1 = Vector2(-102,265)
 const startpos2 = Vector2(102,265)
 const people = ["MATTI","MIKA","RAMONA","MIKA","MATTI","LOTTE","IMKE","LUIS","JAN","MIRKO","ERIK","JUSTUS","CHARLOTTE","MIGUEL","FELIX","ALEX","NIKLAS","BEN","EMIL","HILDE","RICO"]
-func play_silas_sound(sound, language="fr"):
+func play_silas_sound(sound):
 	if typeof(sound) == TYPE_ARRAY:
 		silas_player.stream = sound.pick_random()
 	else:
@@ -141,11 +140,33 @@ func process_judge():
 			$judge.play("Idle")
 	# Set label
 	# change Animations
-func end():
-	print("ENDE GELENDE")
 
+func end():
+	p1.noInput = true
+	p2.noInput = true
+	get_tree().paused = false
+	judge_state ="announce"
+	if scores["p1"] > scores["p1"]:
+		p1.state = "ENDING"
+		p2.state = "ENDING"
+		$judge.play("win(rechts)")
+		$judge_speak.text = "VICTOIRE DE L'ESCRIMEUR A GAUCHE"
+		p2.play_anim("win")
+	else:
+		p1.state = "ENDING"
+		p2.state = "ENDING"
+		$judge.play("win(links)")
+		$judge_speak.text = "VICTOIRE DE L'ESCRIMEUSE A DROITE"
+		p1.play_anim("win")
+		
+	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): p1.play_anim("gruessen"))
+	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): p2.play_anim("gruessen"))
+	get_tree().create_timer(6.0,true,false,true).timeout.connect(func(): $credits.is_active = true)
 func start():
+
 	judge_state="start"
+	p1.state = "IDLE"
+	p2.state = "IDLE"
 	$judge.play("StellungFertigLos")
 	get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): play_silas_sound(en_garde))
 	get_tree().create_timer(1.0,true,false,true).timeout.connect(func(): $judge_speak.text =  "EN GARDE")
@@ -153,7 +174,7 @@ func start():
 	get_tree().create_timer(2.0,true,false,true).timeout.connect(func(): play_silas_sound(pret))
 	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): $judge_speak.text = "ALLEZ!")
 	get_tree().create_timer(3.0,true,false,true).timeout.connect(func(): play_silas_sound(allez))
-	get_tree().create_timer(4.0,true,false,true).timeout.connect(func(): get_tree().paused = false)
+	get_tree().create_timer(3.1,true,false,true).timeout.connect(func(): get_tree().paused = false)
 	get_tree().create_timer(6.0,true,false,true).timeout.connect(func(): $judge_speak.text = "")
 	get_tree().create_timer(6.0,true,false,true).timeout.connect(func(): judge_state = "eq")
 
@@ -180,7 +201,8 @@ func _process(delta: float) -> void:
 		get_tree().create_timer(4.0,true,false,true).timeout.connect(func(): modifyScoreboard(winner))
 		get_tree().create_timer(5.0,true,false,true).timeout.connect(reset)
 		#get_tree().create_timer(7.0,true,false,true).timeout.connect(start)
-		get_tree().create_timer(7.0,true,false,true).timeout.connect(func(): start() if scores.values().max() < 1 else end())
+		@warning_ignore("standalone_ternary")
+		get_tree().create_timer(7.0,true,false,true).timeout.connect(func(): start() if scores.values().max() < 2 else end())
 		end_timer = 0.0
 		
 
@@ -221,6 +243,10 @@ func _on_main_ui_start() -> void:
 	$p1Name.text = people.pick_random()
 	$p2Name.text = people.pick_random()
 	
+	while $p1Name.text == $p2Name.text:
+		$p2Name.text = people.pick_random()
+	
+	
 	if $p1Name.text == "BEN":
 		p1.isBen = 1
 	else:
@@ -231,7 +257,7 @@ func _on_main_ui_start() -> void:
 	else:
 		p2.isBen = 0
 	reset()
-	scores = {"p1":0,"p2":0, "simultan" : 0}
+	scores = {"p1":0,"p2":0, "simultan" : -2^63}
 	$scoreP1.text = str(scores["p1"])
 	$scoreP2.text = str(scores["p2"])
 	p1.noInput = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://c8b3dckx4gc31"]
+[gd_scene load_steps=82 format=3 uid="uid://c8b3dckx4gc31"]
 
 [ext_resource type="Script" uid="uid://o3ue1pvjb42b" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://bkiqi8755qk7u" path="res://assets/sprites/kampfrichter/sheet.png" id="2_e2o6t"]
@@ -46,6 +46,7 @@
 [ext_resource type="AudioStream" uid="uid://cbgcpvw24abcp" path="res://assets/sounds/silas/attaque_simultane.mp3" id="39_lwlx3"]
 [ext_resource type="AudioStream" uid="uid://b0m5gnxvnf4si" path="res://assets/sounds/silas/attaque_a_droite.mp3" id="40_0de7l"]
 [ext_resource type="AudioStream" uid="uid://7ys3od0sohve" path="res://assets/sounds/silas/halt.mp3" id="41_87ddb"]
+[ext_resource type="PackedScene" uid="uid://brdy38mfw675c" path="res://credits.tscn" id="47_lwlx3"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_e2o6t"]
 distance = -278.0
@@ -419,7 +420,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("37_iu0sx")
 
 [node name="End1" parent="." instance=ExtResource("38_4v2jo")]
-visible = true
 show_behind_parent = true
 position = Vector2(-393, 274)
 permanent = true
@@ -427,7 +427,6 @@ player = "p2"
 sound = false
 
 [node name="End2" parent="." instance=ExtResource("38_4v2jo")]
-visible = true
 position = Vector2(371, 275)
 permanent = true
 player = "p1"
@@ -453,6 +452,15 @@ offset_bottom = 106.0
 theme_override_fonts/normal_font = ExtResource("38_eu6ph")
 theme_override_font_sizes/normal_font_size = 10
 
+[node name="credits" parent="." instance=ExtResource("47_lwlx3")]
+visible = false
+z_index = 100
+offset_left = -372.0
+offset_top = -97.0
+offset_right = -372.0
+offset_bottom = -97.0
+
 [connection signal="start" from="MainUI" to="." method="_on_main_ui_start"]
 [connection signal="hit" from="End1" to="." method="_on_hit"]
 [connection signal="hit" from="End2" to="." method="_on_hit"]
+[connection signal="start" from="credits" to="." method="_on_main_ui_start"]

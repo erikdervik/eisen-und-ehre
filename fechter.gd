@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 
 	hitTime = hitTime-delta if hitTime > 0.0 else 0.0
 	if hitTime < 0.0:
-		spawn_hitbox(0,1)
+		spawn_hitbox(0,0.35)
 		hitTime = 0.0
 	
 	lungeVelocity = lungeVelocity - (delta * 600+PI) if lungeVelocity != 0.0 else 0.0
@@ -79,7 +79,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y = JUMP_VELOCITY + isBen * -150
 	
 		if Input.is_action_just_pressed(player + "_attack") and state in CAN_ATTACK and attackTime < -2:
-			hitTime = 0.3
+			hitTime = 0.25
 			if state in CAN_FOWARD_ATTACK:
 				$AnimatedSprite2D.play("hit n walk")
 			elif state in CAN_BACK_ATTACK:
@@ -91,7 +91,7 @@ func _physics_process(delta: float) -> void:
 			attackTime = 1
 			emit_signal("action",player,"attack") # Loose Priority if Attack finished
 		if Input.is_action_just_pressed(player + "_lunge") and state in CAN_LUNGE and lungeTime < -2:
-			hitTime = 0.3
+			hitTime = 0.25
 			state = "LUNGE"
 			velocity = Vector2.ZERO
 			lungeVelocity = 300 + 50 * groundPoundTime + 200 * isBen

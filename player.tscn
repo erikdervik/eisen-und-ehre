@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://br7lgik01bxy8"]
+[gd_scene load_steps=58 format=3 uid="uid://br7lgik01bxy8"]
 
 [ext_resource type="Script" uid="uid://dh43ii3wk17t7" path="res://fechter.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bae2fiokyt4lm" path="res://assets/sprites/player1/fencing_sheet2.png" id="2_onrkg"]
@@ -193,6 +193,30 @@ region = Rect2(44, 0, 44, 44)
 [sub_resource type="AtlasTexture" id="AtlasTexture_b88wv"]
 atlas = ExtResource("2_onrkg")
 region = Rect2(88, 0, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl8ci"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(176, 308, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieltc"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(220, 308, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fddr8"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(264, 308, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oybyf"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(308, 308, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajfva"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(352, 308, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ef02"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(396, 308, 44, 44)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q13i1"]
 animations = [{
@@ -449,6 +473,29 @@ animations = [{
 "loop": true,
 "name": &"walk",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vl8ci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieltc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fddr8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oybyf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajfva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ef02")
+}],
+"loop": true,
+"name": &"win",
+"speed": 7.0
 }]
 
 [node name="Fechter" type="CharacterBody2D"]
@@ -469,6 +516,6 @@ shape = SubResource("RectangleShape2D_onrkg")
 position = Vector2(10, -32)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_q13i1")
-animation = &"gruessen"
-frame = 12
-frame_progress = 1.0
+animation = &"win"
+frame = 5
+frame_progress = 0.85423124

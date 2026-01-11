@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://c8b3dckx4gc31"]
+[gd_scene load_steps=81 format=3 uid="uid://c8b3dckx4gc31"]
 
 [ext_resource type="Script" uid="uid://o3ue1pvjb42b" path="res://game.gd" id="1_e2o6t"]
 [ext_resource type="Texture2D" uid="uid://bkiqi8755qk7u" path="res://assets/sprites/kampfrichter/sheet.png" id="2_e2o6t"]
@@ -170,6 +170,14 @@ region = Rect2(0, 198, 44, 22)
 atlas = ExtResource("2_e2o6t")
 region = Rect2(44, 198, 44, 22)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_m28ev"]
+atlas = ExtResource("2_e2o6t")
+region = Rect2(0, 374, 44, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwlx3"]
+atlas = ExtResource("2_e2o6t")
+region = Rect2(44, 374, 44, 22)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_r62pu"]
 animations = [{
 "frames": [{
@@ -321,6 +329,22 @@ animations = [{
 "loop": false,
 "name": &"konterattacke(rechts)",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m28ev")
+}],
+"loop": true,
+"name": &"win(links)",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwlx3")
+}],
+"loop": true,
+"name": &"win(rechts)",
+"speed": 5.0
 }]
 
 [node name="game" type="Node2D"]
@@ -368,7 +392,7 @@ process_mode = 3
 position = Vector2(-1, 204)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_r62pu")
-animation = &"StellungFertigLos"
+animation = &"win(rechts)"
 
 [node name="judge_speak" type="RichTextLabel" parent="."]
 offset_left = -93.0

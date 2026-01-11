@@ -1,6 +1,7 @@
 # eisen und ehre
 
 ## TODO
+- [x] Lunge, ATTack, Parry cooldowns reset on reset()
 - [ ] silas Sounds
 - [ ] Musik (aufgenommen????? Gitarre + Bass + Ukulele?)
 - [ ] Abgrüßen/Angrüßen /thanks for playing

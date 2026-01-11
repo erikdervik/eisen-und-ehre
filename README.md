@@ -4,10 +4,11 @@
 - [x] Lunge, ATTack, Parry cooldowns reset on reset()
 - [ ] silas Sounds
 - [ ] Musik (aufgenommen????? Gitarre + Bass + Ukulele?)
-- [ ] Abgrüßen/Angrüßen /thanks for playing
+- [ ] Abgrüßen/thanks for playing/Danksagung
+- [ ] Angrüßen 
 - [ ] Itch.io Page
 - [ ] Zeiten überall Anpassen
-- [ ] Vernünftige Controls
+- [x] Vernünftige Controls
 - [x] Endlinie (HITBOX)
 - [x] MAIN UI: startfunktion statt Engine.timescale = 0
 - [x] sound effekte (Aufgenommen?)

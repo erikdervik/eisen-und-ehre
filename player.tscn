@@ -232,8 +232,8 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8gr2b")
 }],
-"loop": true,
-"name": &"grüßen",
+"loop": false,
+"name": &"gruessen",
 "speed": 5.0
 }, {
 "frames": [{
@@ -451,5 +451,4 @@ shape = SubResource("RectangleShape2D_onrkg")
 position = Vector2(10, -32)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_q13i1")
-animation = &"grüßen"
-frame_progress = 0.43403277
+animation = &"gruessen"

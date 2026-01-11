@@ -26,6 +26,7 @@ var direction = 0
 var hitTime = 0.0
 var parriesTimer = 0.0
 var isBen = 0
+var noInput = false
 signal action(player, action)
 
 func spawn_hitbox(offset,lifetime):
@@ -35,6 +36,10 @@ func spawn_hitbox(offset,lifetime):
 	hitbox.lifetime = lifetime
 	hitbox.player = player
 	hitbox.hit.connect(get_tree().current_scene._on_hit)
+
+func play_anim(s):
+	$AnimatedSprite2D.play(s)
+
 
 func _ready() -> void:
 	self.get_child(0).add_to_group(player)
@@ -63,11 +68,12 @@ func _physics_process(delta: float) -> void:
 	attackTime = max(attackTime - (delta*(1+isBen)), -3)
 	groundPoundTime = max(groundPoundTime - delta, 0)
 	
+	
 	if state == "LUNGE" and lungeTime < 0 or state == "PARRY" and parryTime < 0 or state == "ATTACK" and attackTime < 0:
 		state = "IDLE"
 		$AnimatedSprite2D.play("idle")
-		
-	if is_on_floor():
+	
+	if is_on_floor() and not noInput:
 		if Input.is_action_just_pressed(player + "_jump") and state in CAN_JUMP:
 			state = "JUMP"
 			velocity.y = JUMP_VELOCITY + isBen * -150

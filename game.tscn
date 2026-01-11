@@ -363,12 +363,14 @@ sprite_frames = SubResource("SpriteFrames_r62pu")
 animation = &"StellungFertigLos"
 
 [node name="judge_speak" type="RichTextLabel" parent="."]
-offset_left = -82.0
-offset_top = 105.0
-offset_right = 69.0
-offset_bottom = 176.0
+offset_left = -93.0
+offset_top = 111.0
+offset_right = 103.0
+offset_bottom = 197.0
+theme_override_constants/line_separation = 10
+theme_override_constants/paragraph_separation = 10
 theme_override_fonts/normal_font = ExtResource("38_eu6ph")
-theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -402,14 +404,14 @@ volume_db = -4.77
 [node name="p2Name" type="RichTextLabel" parent="."]
 offset_left = 1.0
 offset_top = 80.0
-offset_right = 79.0
+offset_right = 86.0
 offset_bottom = 106.0
 theme_override_fonts/normal_font = ExtResource("38_eu6ph")
 theme_override_font_sizes/normal_font_size = 10
 horizontal_alignment = 2
 
 [node name="p1Name" type="RichTextLabel" parent="."]
-offset_left = -77.0
+offset_left = -81.0
 offset_top = 80.0
 offset_right = -2.0
 offset_bottom = 106.0
